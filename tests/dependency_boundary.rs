@@ -19,7 +19,7 @@ fn default_dependency_tree_has_no_runtime_or_text_crates() {
         "tokio",
         "redb",
         "nota ",
-        "schema ",
+        "schema-language",
     ] {
         assert!(
             !tree.contains(forbidden_crate),
@@ -50,8 +50,8 @@ fn nota_text_feature_only_adds_canonical_text_projection() {
         "nota-text should opt into nota:\n{tree}"
     );
     assert!(
-        tree.contains("schema"),
-        "nota-text should opt into schema:\n{tree}"
+        tree.contains("schema-language"),
+        "nota-text should opt into schema-language:\n{tree}"
     );
     for forbidden_crate in [
         "signal-spirit",
