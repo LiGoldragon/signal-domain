@@ -15,13 +15,25 @@ pub const DOMAIN_RUST_SOURCE: &str = include_str!("schema/domain.rs");
 
 impl Domain {
     pub fn matches_scope(&self, scope: &DomainScope) -> bool {
-        scope.contains_domain(self)
+        scope.matches_domain(self)
+    }
+
+    pub fn is_all(&self) -> bool {
+        matches!(self, Self::All)
     }
 }
 
 impl DomainScope {
     pub fn matches_domain(&self, domain: &Domain) -> bool {
-        self.contains_domain(domain)
+        self.is_all() || domain.is_all() || self.contains_domain(domain)
+    }
+
+    pub fn matches_scope(&self, scope: &DomainScope) -> bool {
+        self.is_all() || scope.is_all() || self.contains_scope(scope)
+    }
+
+    pub fn is_all(&self) -> bool {
+        matches!(self, Self::All)
     }
 }
 
