@@ -10,6 +10,58 @@ pub mod schema;
 
 pub use crate::schema::domain::*;
 
+pub type Health = HealthDomain;
+pub type Food = FoodDomain;
+pub type Home = HomeDomain;
+pub type Finance = FinanceDomain;
+pub type Work = WorkDomain;
+pub type Craft = CraftDomain;
+pub type Knowledge = KnowledgeDomain;
+pub type Education = EducationDomain;
+pub type Language = LanguageDomain;
+pub type Art = ArtDomain;
+pub type Kinship = KinshipDomain;
+pub type Selfhood = SelfhoodDomain;
+pub type Spirituality = SpiritualityDomain;
+pub type Governance = GovernanceDomain;
+pub type Law = LawDomain;
+pub type Community = CommunityDomain;
+pub type Nature = NatureDomain;
+pub type Travel = TravelDomain;
+pub type Commerce = CommerceDomain;
+pub type Leisure = LeisureDomain;
+pub type Appearance = AppearanceDomain;
+pub type Safety = SafetyDomain;
+pub type Information = InformationDomain;
+pub type Technology = TechnologyDomain;
+pub type Software = SoftwareDomain;
+
+pub type HealthScope = HealthDomainScope;
+pub type FoodScope = FoodDomainScope;
+pub type HomeScope = HomeDomainScope;
+pub type FinanceScope = FinanceDomainScope;
+pub type WorkScope = WorkDomainScope;
+pub type CraftScope = CraftDomainScope;
+pub type KnowledgeScope = KnowledgeDomainScope;
+pub type EducationScope = EducationDomainScope;
+pub type LanguageScope = LanguageDomainScope;
+pub type ArtScope = ArtDomainScope;
+pub type KinshipScope = KinshipDomainScope;
+pub type SelfhoodScope = SelfhoodDomainScope;
+pub type SpiritualityScope = SpiritualityDomainScope;
+pub type GovernanceScope = GovernanceDomainScope;
+pub type LawScope = LawDomainScope;
+pub type CommunityScope = CommunityDomainScope;
+pub type NatureScope = NatureDomainScope;
+pub type TravelScope = TravelDomainScope;
+pub type CommerceScope = CommerceDomainScope;
+pub type LeisureScope = LeisureDomainScope;
+pub type AppearanceScope = AppearanceDomainScope;
+pub type SafetyScope = SafetyDomainScope;
+pub type InformationScope = InformationDomainScope;
+pub type TechnologyScope = TechnologyDomainScope;
+pub type SoftwareScope = SoftwareDomainScope;
+
 pub const DOMAIN_SCHEMA_SOURCE: &str = include_str!("../schema/domain.schema");
 pub const DOMAIN_RUST_SOURCE: &str = include_str!("schema/domain.rs");
 

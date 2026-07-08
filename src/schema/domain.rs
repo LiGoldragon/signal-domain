@@ -18,6 +18,40 @@ pub use nota::{NotaDecodeError, NotaEncode, NotaSource};
     feature = "nota-text",
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
+pub enum Domain {
+    All,
+    Health(HealthDomain),
+    Food(FoodDomain),
+    Home(HomeDomain),
+    Finance(FinanceDomain),
+    Work(WorkDomain),
+    Craft(CraftDomain),
+    Knowledge(KnowledgeDomain),
+    Education(EducationDomain),
+    Language(LanguageDomain),
+    Art(ArtDomain),
+    Kinship(KinshipDomain),
+    Selfhood(SelfhoodDomain),
+    Spirituality(SpiritualityDomain),
+    Governance(GovernanceDomain),
+    Law(LawDomain),
+    Community(CommunityDomain),
+    Nature(NatureDomain),
+    Travel(TravelDomain),
+    Commerce(CommerceDomain),
+    Leisure(LeisureDomain),
+    Appearance(AppearanceDomain),
+    Safety(SafetyDomain),
+    Information(InformationDomain),
+    Technology(TechnologyDomain),
+}
+
+#[rustfmt::skip]
+#[cfg_attr(
+    feature = "nota-text",
+    derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
+)]
 #[derive(
     rkyv::Archive,
     rkyv::Serialize,
@@ -28,7 +62,7 @@ pub use nota::{NotaDecodeError, NotaEncode, NotaSource};
     PartialEq,
     Eq,
 )]
-pub enum Health {
+pub enum HealthDomain {
     Body,
     Mind,
     Nutrition,
@@ -66,7 +100,7 @@ pub enum Health {
     PartialEq,
     Eq,
 )]
-pub enum Food {
+pub enum FoodDomain {
     Cooking,
     Diet,
     Recipe,
@@ -95,7 +129,7 @@ pub enum Food {
     PartialEq,
     Eq,
 )]
-pub enum Home {
+pub enum HomeDomain {
     Housing,
     Maintenance,
     Renovation,
@@ -125,7 +159,7 @@ pub enum Home {
     PartialEq,
     Eq,
 )]
-pub enum Finance {
+pub enum FinanceDomain {
     Budgeting,
     Saving,
     Spending,
@@ -157,7 +191,7 @@ pub enum Finance {
     PartialEq,
     Eq,
 )]
-pub enum Work {
+pub enum WorkDomain {
     Career,
     JobSearch,
     Workplace,
@@ -189,7 +223,7 @@ pub enum Work {
     PartialEq,
     Eq,
 )]
-pub enum Craft {
+pub enum CraftDomain {
     Electronics,
     Construction,
     Carpentry,
@@ -217,7 +251,7 @@ pub enum Craft {
     PartialEq,
     Eq,
 )]
-pub enum Knowledge {
+pub enum KnowledgeDomain {
     Mathematics,
     Logic,
     Physics,
@@ -252,7 +286,7 @@ pub enum Knowledge {
     PartialEq,
     Eq,
 )]
-pub enum Education {
+pub enum EducationDomain {
     Studying,
     Teaching,
     Schooling,
@@ -280,7 +314,7 @@ pub enum Education {
     PartialEq,
     Eq,
 )]
-pub enum Language {
+pub enum LanguageDomain {
     Writing,
     Rhetoric,
     Translation,
@@ -309,7 +343,7 @@ pub enum Language {
     PartialEq,
     Eq,
 )]
-pub enum Art {
+pub enum ArtDomain {
     Fiction,
     Poetry,
     Music,
@@ -340,7 +374,7 @@ pub enum Art {
     PartialEq,
     Eq,
 )]
-pub enum Kinship {
+pub enum KinshipDomain {
     Friendship,
     Romance,
     Marriage,
@@ -371,7 +405,7 @@ pub enum Kinship {
     PartialEq,
     Eq,
 )]
-pub enum Selfhood {
+pub enum SelfhoodDomain {
     Growth,
     Introspection,
     Discipline,
@@ -402,7 +436,7 @@ pub enum Selfhood {
     PartialEq,
     Eq,
 )]
-pub enum Spirituality {
+pub enum SpiritualityDomain {
     Worship,
     Prayer,
     Meditation,
@@ -434,7 +468,7 @@ pub enum Spirituality {
     PartialEq,
     Eq,
 )]
-pub enum Governance {
+pub enum GovernanceDomain {
     Politics,
     Government,
     Administration,
@@ -465,7 +499,7 @@ pub enum Governance {
     PartialEq,
     Eq,
 )]
-pub enum Law {
+pub enum LawDomain {
     Rights,
     Contract,
     Title,
@@ -495,7 +529,7 @@ pub enum Law {
     PartialEq,
     Eq,
 )]
-pub enum Community {
+pub enum CommunityDomain {
     Neighborliness,
     Volunteering,
     Solidarity,
@@ -522,7 +556,7 @@ pub enum Community {
     PartialEq,
     Eq,
 )]
-pub enum Nature {
+pub enum NatureDomain {
     Agriculture,
     Gardening,
     Horticulture,
@@ -554,7 +588,7 @@ pub enum Nature {
     PartialEq,
     Eq,
 )]
-pub enum Travel {
+pub enum TravelDomain {
     Itinerary,
     Destination,
     Transportation,
@@ -583,7 +617,7 @@ pub enum Travel {
     PartialEq,
     Eq,
 )]
-pub enum Commerce {
+pub enum CommerceDomain {
     Selling,
     Buying,
     Marketing,
@@ -612,7 +646,7 @@ pub enum Commerce {
     PartialEq,
     Eq,
 )]
-pub enum Leisure {
+pub enum LeisureDomain {
     Recreation,
     Sport,
     Games,
@@ -641,7 +675,7 @@ pub enum Leisure {
     PartialEq,
     Eq,
 )]
-pub enum Appearance {
+pub enum AppearanceDomain {
     Clothing,
     Grooming,
     Style,
@@ -665,7 +699,7 @@ pub enum Appearance {
     PartialEq,
     Eq,
 )]
-pub enum Safety {
+pub enum SafetyDomain {
     Protection,
     Preparedness,
     Risk,
@@ -691,7 +725,7 @@ pub enum Safety {
     PartialEq,
     Eq,
 )]
-pub enum Information {
+pub enum InformationDomain {
     Curation,
     RecordKeeping,
     Documentation,
@@ -709,43 +743,9 @@ pub enum Information {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum Domain {
-    All,
-    Health(Health),
-    Food(Food),
-    Home(Home),
-    Finance(Finance),
-    Work(Work),
-    Craft(Craft),
-    Knowledge(Knowledge),
-    Education(Education),
-    Language(Language),
-    Art(Art),
-    Kinship(Kinship),
-    Selfhood(Selfhood),
-    Spirituality(Spirituality),
-    Governance(Governance),
-    Law(Law),
-    Community(Community),
-    Nature(Nature),
-    Travel(Travel),
-    Commerce(Commerce),
-    Leisure(Leisure),
-    Appearance(Appearance),
-    Safety(Safety),
-    Information(Information),
-    Technology(Technology),
-}
-
-#[rustfmt::skip]
-#[cfg_attr(
-    feature = "nota-text",
-    derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
-)]
-#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum Technology {
+pub enum TechnologyDomain {
     Hardware(HardwareLeaf),
-    Software(Software),
+    Software(SoftwareDomain),
 }
 
 #[rustfmt::skip]
@@ -774,7 +774,7 @@ pub enum HardwareLeaf {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum Software {
+pub enum SoftwareDomain {
     Programming(ProgrammingLeaf),
     Theory,
     Systems(SystemsLeaf),
@@ -1047,30 +1047,30 @@ pub enum EngineeringLeaf {
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
 pub enum DomainScope {
     All,
-    Health(HealthScope),
-    Food(FoodScope),
-    Home(HomeScope),
-    Finance(FinanceScope),
-    Work(WorkScope),
-    Craft(CraftScope),
-    Knowledge(KnowledgeScope),
-    Education(EducationScope),
-    Language(LanguageScope),
-    Art(ArtScope),
-    Kinship(KinshipScope),
-    Selfhood(SelfhoodScope),
-    Spirituality(SpiritualityScope),
-    Governance(GovernanceScope),
-    Law(LawScope),
-    Community(CommunityScope),
-    Nature(NatureScope),
-    Travel(TravelScope),
-    Commerce(CommerceScope),
-    Leisure(LeisureScope),
-    Appearance(AppearanceScope),
-    Safety(SafetyScope),
-    Information(InformationScope),
-    Technology(TechnologyScope),
+    Health(HealthDomainScope),
+    Food(FoodDomainScope),
+    Home(HomeDomainScope),
+    Finance(FinanceDomainScope),
+    Work(WorkDomainScope),
+    Craft(CraftDomainScope),
+    Knowledge(KnowledgeDomainScope),
+    Education(EducationDomainScope),
+    Language(LanguageDomainScope),
+    Art(ArtDomainScope),
+    Kinship(KinshipDomainScope),
+    Selfhood(SelfhoodDomainScope),
+    Spirituality(SpiritualityDomainScope),
+    Governance(GovernanceDomainScope),
+    Law(LawDomainScope),
+    Community(CommunityDomainScope),
+    Nature(NatureDomainScope),
+    Travel(TravelDomainScope),
+    Commerce(CommerceDomainScope),
+    Leisure(LeisureDomainScope),
+    Appearance(AppearanceDomainScope),
+    Safety(SafetyDomainScope),
+    Information(InformationDomainScope),
+    Technology(TechnologyDomainScope),
 }
 #[rustfmt::skip]
 #[cfg_attr(
@@ -1078,10 +1078,10 @@ pub enum DomainScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum TechnologyScope {
+pub enum TechnologyDomainScope {
     All,
     Hardware(HardwareLeafScope),
-    Software(SoftwareScope),
+    Software(SoftwareDomainScope),
 }
 #[rustfmt::skip]
 #[cfg_attr(
@@ -1089,7 +1089,7 @@ pub enum TechnologyScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum SoftwareScope {
+pub enum SoftwareDomainScope {
     All,
     Programming(ProgrammingLeafScope),
     Theory,
@@ -1260,7 +1260,7 @@ pub enum HardwareLeafScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum InformationScope {
+pub enum InformationDomainScope {
     All,
     Curation,
     RecordKeeping,
@@ -1278,7 +1278,7 @@ pub enum InformationScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum SafetyScope {
+pub enum SafetyDomainScope {
     All,
     Protection,
     Preparedness,
@@ -1295,7 +1295,7 @@ pub enum SafetyScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum AppearanceScope {
+pub enum AppearanceDomainScope {
     All,
     Clothing,
     Grooming,
@@ -1310,7 +1310,7 @@ pub enum AppearanceScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum LeisureScope {
+pub enum LeisureDomainScope {
     All,
     Recreation,
     Sport,
@@ -1330,7 +1330,7 @@ pub enum LeisureScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum CommerceScope {
+pub enum CommerceDomainScope {
     All,
     Selling,
     Buying,
@@ -1350,7 +1350,7 @@ pub enum CommerceScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum TravelScope {
+pub enum TravelDomainScope {
     All,
     Itinerary,
     Destination,
@@ -1370,7 +1370,7 @@ pub enum TravelScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum NatureScope {
+pub enum NatureDomainScope {
     All,
     Agriculture,
     Gardening,
@@ -1393,7 +1393,7 @@ pub enum NatureScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum CommunityScope {
+pub enum CommunityDomainScope {
     All,
     Neighborliness,
     Volunteering,
@@ -1411,7 +1411,7 @@ pub enum CommunityScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum LawScope {
+pub enum LawDomainScope {
     All,
     Rights,
     Contract,
@@ -1432,7 +1432,7 @@ pub enum LawScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum GovernanceScope {
+pub enum GovernanceDomainScope {
     All,
     Politics,
     Government,
@@ -1454,7 +1454,7 @@ pub enum GovernanceScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum SpiritualityScope {
+pub enum SpiritualityDomainScope {
     All,
     Worship,
     Prayer,
@@ -1477,7 +1477,7 @@ pub enum SpiritualityScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum SelfhoodScope {
+pub enum SelfhoodDomainScope {
     All,
     Growth,
     Introspection,
@@ -1499,7 +1499,7 @@ pub enum SelfhoodScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum KinshipScope {
+pub enum KinshipDomainScope {
     All,
     Friendship,
     Romance,
@@ -1521,7 +1521,7 @@ pub enum KinshipScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum ArtScope {
+pub enum ArtDomainScope {
     All,
     Fiction,
     Poetry,
@@ -1543,7 +1543,7 @@ pub enum ArtScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum LanguageScope {
+pub enum LanguageDomainScope {
     All,
     Writing,
     Rhetoric,
@@ -1563,7 +1563,7 @@ pub enum LanguageScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum EducationScope {
+pub enum EducationDomainScope {
     All,
     Studying,
     Teaching,
@@ -1582,7 +1582,7 @@ pub enum EducationScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum KnowledgeScope {
+pub enum KnowledgeDomainScope {
     All,
     Mathematics,
     Logic,
@@ -1608,7 +1608,7 @@ pub enum KnowledgeScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum CraftScope {
+pub enum CraftDomainScope {
     All,
     Electronics,
     Construction,
@@ -1627,7 +1627,7 @@ pub enum CraftScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum WorkScope {
+pub enum WorkDomainScope {
     All,
     Career,
     JobSearch,
@@ -1650,7 +1650,7 @@ pub enum WorkScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum FinanceScope {
+pub enum FinanceDomainScope {
     All,
     Budgeting,
     Saving,
@@ -1673,7 +1673,7 @@ pub enum FinanceScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum HomeScope {
+pub enum HomeDomainScope {
     All,
     Housing,
     Maintenance,
@@ -1694,7 +1694,7 @@ pub enum HomeScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum FoodScope {
+pub enum FoodDomainScope {
     All,
     Cooking,
     Diet,
@@ -1714,7 +1714,7 @@ pub enum FoodScope {
     derive(nota::NotaDecode, nota::NotaDecodeTraced, nota::NotaEncode)
 )]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq)]
-pub enum HealthScope {
+pub enum HealthDomainScope {
     All,
     Body,
     Mind,
@@ -1738,34 +1738,34 @@ pub enum HealthScope {
     Rehabilitation,
 }
 #[rustfmt::skip]
-impl From<Health> for HealthScope {
-    fn from(value: Health) -> Self {
+impl From<HealthDomain> for HealthDomainScope {
+    fn from(value: HealthDomain) -> Self {
         match value {
-            Health::Body => Self::Body,
-            Health::Mind => Self::Mind,
-            Health::Nutrition => Self::Nutrition,
-            Health::Exercise => Self::Exercise,
-            Health::Sleep => Self::Sleep,
-            Health::Medicine => Self::Medicine,
-            Health::Disease => Self::Disease,
-            Health::Medication => Self::Medication,
-            Health::Therapy => Self::Therapy,
-            Health::Reproduction => Self::Reproduction,
-            Health::Sexuality => Self::Sexuality,
-            Health::Aging => Self::Aging,
-            Health::Disability => Self::Disability,
-            Health::Addiction => Self::Addiction,
-            Health::Dentistry => Self::Dentistry,
-            Health::Senses => Self::Senses,
-            Health::Pain => Self::Pain,
-            Health::Prevention => Self::Prevention,
-            Health::FirstAid => Self::FirstAid,
-            Health::Rehabilitation => Self::Rehabilitation,
+            HealthDomain::Body => Self::Body,
+            HealthDomain::Mind => Self::Mind,
+            HealthDomain::Nutrition => Self::Nutrition,
+            HealthDomain::Exercise => Self::Exercise,
+            HealthDomain::Sleep => Self::Sleep,
+            HealthDomain::Medicine => Self::Medicine,
+            HealthDomain::Disease => Self::Disease,
+            HealthDomain::Medication => Self::Medication,
+            HealthDomain::Therapy => Self::Therapy,
+            HealthDomain::Reproduction => Self::Reproduction,
+            HealthDomain::Sexuality => Self::Sexuality,
+            HealthDomain::Aging => Self::Aging,
+            HealthDomain::Disability => Self::Disability,
+            HealthDomain::Addiction => Self::Addiction,
+            HealthDomain::Dentistry => Self::Dentistry,
+            HealthDomain::Senses => Self::Senses,
+            HealthDomain::Pain => Self::Pain,
+            HealthDomain::Prevention => Self::Prevention,
+            HealthDomain::FirstAid => Self::FirstAid,
+            HealthDomain::Rehabilitation => Self::Rehabilitation,
         }
     }
 }
 #[rustfmt::skip]
-impl HealthScope {
+impl HealthDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Body, Self::Body) | (Self::Mind,
@@ -1783,25 +1783,25 @@ impl HealthScope {
     }
 }
 #[rustfmt::skip]
-impl From<Food> for FoodScope {
-    fn from(value: Food) -> Self {
+impl From<FoodDomain> for FoodDomainScope {
+    fn from(value: FoodDomain) -> Self {
         match value {
-            Food::Cooking => Self::Cooking,
-            Food::Diet => Self::Diet,
-            Food::Recipe => Self::Recipe,
-            Food::Baking => Self::Baking,
-            Food::Preservation => Self::Preservation,
-            Food::Fermentation => Self::Fermentation,
-            Food::Beverage => Self::Beverage,
-            Food::Entertaining => Self::Entertaining,
-            Food::Foraging => Self::Foraging,
-            Food::Fasting => Self::Fasting,
-            Food::Dining => Self::Dining,
+            FoodDomain::Cooking => Self::Cooking,
+            FoodDomain::Diet => Self::Diet,
+            FoodDomain::Recipe => Self::Recipe,
+            FoodDomain::Baking => Self::Baking,
+            FoodDomain::Preservation => Self::Preservation,
+            FoodDomain::Fermentation => Self::Fermentation,
+            FoodDomain::Beverage => Self::Beverage,
+            FoodDomain::Entertaining => Self::Entertaining,
+            FoodDomain::Foraging => Self::Foraging,
+            FoodDomain::Fasting => Self::Fasting,
+            FoodDomain::Dining => Self::Dining,
         }
     }
 }
 #[rustfmt::skip]
-impl FoodScope {
+impl FoodDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Cooking, Self::Cooking) | (Self::Diet,
@@ -1814,26 +1814,26 @@ impl FoodScope {
     }
 }
 #[rustfmt::skip]
-impl From<Home> for HomeScope {
-    fn from(value: Home) -> Self {
+impl From<HomeDomain> for HomeDomainScope {
+    fn from(value: HomeDomain) -> Self {
         match value {
-            Home::Housing => Self::Housing,
-            Home::Maintenance => Self::Maintenance,
-            Home::Renovation => Self::Renovation,
-            Home::Furnishing => Self::Furnishing,
-            Home::Cleaning => Self::Cleaning,
-            Home::Tidying => Self::Tidying,
-            Home::Relocation => Self::Relocation,
-            Home::Realty => Self::Realty,
-            Home::Property => Self::Property,
-            Home::Utilities => Self::Utilities,
-            Home::Locksmithing => Self::Locksmithing,
-            Home::Appliances => Self::Appliances,
+            HomeDomain::Housing => Self::Housing,
+            HomeDomain::Maintenance => Self::Maintenance,
+            HomeDomain::Renovation => Self::Renovation,
+            HomeDomain::Furnishing => Self::Furnishing,
+            HomeDomain::Cleaning => Self::Cleaning,
+            HomeDomain::Tidying => Self::Tidying,
+            HomeDomain::Relocation => Self::Relocation,
+            HomeDomain::Realty => Self::Realty,
+            HomeDomain::Property => Self::Property,
+            HomeDomain::Utilities => Self::Utilities,
+            HomeDomain::Locksmithing => Self::Locksmithing,
+            HomeDomain::Appliances => Self::Appliances,
         }
     }
 }
 #[rustfmt::skip]
-impl HomeScope {
+impl HomeDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Housing, Self::Housing) |
@@ -1847,28 +1847,28 @@ impl HomeScope {
     }
 }
 #[rustfmt::skip]
-impl From<Finance> for FinanceScope {
-    fn from(value: Finance) -> Self {
+impl From<FinanceDomain> for FinanceDomainScope {
+    fn from(value: FinanceDomain) -> Self {
         match value {
-            Finance::Budgeting => Self::Budgeting,
-            Finance::Saving => Self::Saving,
-            Finance::Spending => Self::Spending,
-            Finance::Debt => Self::Debt,
-            Finance::Credit => Self::Credit,
-            Finance::Investing => Self::Investing,
-            Finance::Retirement => Self::Retirement,
-            Finance::Tax => Self::Tax,
-            Finance::Insurance => Self::Insurance,
-            Finance::Income => Self::Income,
-            Finance::Banking => Self::Banking,
-            Finance::Charity => Self::Charity,
-            Finance::Planning => Self::Planning,
-            Finance::Accounting => Self::Accounting,
+            FinanceDomain::Budgeting => Self::Budgeting,
+            FinanceDomain::Saving => Self::Saving,
+            FinanceDomain::Spending => Self::Spending,
+            FinanceDomain::Debt => Self::Debt,
+            FinanceDomain::Credit => Self::Credit,
+            FinanceDomain::Investing => Self::Investing,
+            FinanceDomain::Retirement => Self::Retirement,
+            FinanceDomain::Tax => Self::Tax,
+            FinanceDomain::Insurance => Self::Insurance,
+            FinanceDomain::Income => Self::Income,
+            FinanceDomain::Banking => Self::Banking,
+            FinanceDomain::Charity => Self::Charity,
+            FinanceDomain::Planning => Self::Planning,
+            FinanceDomain::Accounting => Self::Accounting,
         }
     }
 }
 #[rustfmt::skip]
-impl FinanceScope {
+impl FinanceDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Budgeting, Self::Budgeting) |
@@ -1883,28 +1883,28 @@ impl FinanceScope {
     }
 }
 #[rustfmt::skip]
-impl From<Work> for WorkScope {
-    fn from(value: Work) -> Self {
+impl From<WorkDomain> for WorkDomainScope {
+    fn from(value: WorkDomain) -> Self {
         match value {
-            Work::Career => Self::Career,
-            Work::JobSearch => Self::JobSearch,
-            Work::Workplace => Self::Workplace,
-            Work::Vocation => Self::Vocation,
-            Work::Leadership => Self::Leadership,
-            Work::Entrepreneurship => Self::Entrepreneurship,
-            Work::Employment => Self::Employment,
-            Work::Compensation => Self::Compensation,
-            Work::Scheduling => Self::Scheduling,
-            Work::Unemployment => Self::Unemployment,
-            Work::Freelancing => Self::Freelancing,
-            Work::Teamwork => Self::Teamwork,
-            Work::Productivity => Self::Productivity,
-            Work::Project => Self::Project,
+            WorkDomain::Career => Self::Career,
+            WorkDomain::JobSearch => Self::JobSearch,
+            WorkDomain::Workplace => Self::Workplace,
+            WorkDomain::Vocation => Self::Vocation,
+            WorkDomain::Leadership => Self::Leadership,
+            WorkDomain::Entrepreneurship => Self::Entrepreneurship,
+            WorkDomain::Employment => Self::Employment,
+            WorkDomain::Compensation => Self::Compensation,
+            WorkDomain::Scheduling => Self::Scheduling,
+            WorkDomain::Unemployment => Self::Unemployment,
+            WorkDomain::Freelancing => Self::Freelancing,
+            WorkDomain::Teamwork => Self::Teamwork,
+            WorkDomain::Productivity => Self::Productivity,
+            WorkDomain::Project => Self::Project,
         }
     }
 }
 #[rustfmt::skip]
-impl WorkScope {
+impl WorkDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Career, Self::Career) |
@@ -1920,24 +1920,24 @@ impl WorkScope {
     }
 }
 #[rustfmt::skip]
-impl From<Craft> for CraftScope {
-    fn from(value: Craft) -> Self {
+impl From<CraftDomain> for CraftDomainScope {
+    fn from(value: CraftDomain) -> Self {
         match value {
-            Craft::Electronics => Self::Electronics,
-            Craft::Construction => Self::Construction,
-            Craft::Carpentry => Self::Carpentry,
-            Craft::Metalworking => Self::Metalworking,
-            Craft::Sewing => Self::Sewing,
-            Craft::Manufacturing => Self::Manufacturing,
-            Craft::Repair => Self::Repair,
-            Craft::Engineering => Self::Engineering,
-            Craft::Handicraft => Self::Handicraft,
-            Craft::Invention => Self::Invention,
+            CraftDomain::Electronics => Self::Electronics,
+            CraftDomain::Construction => Self::Construction,
+            CraftDomain::Carpentry => Self::Carpentry,
+            CraftDomain::Metalworking => Self::Metalworking,
+            CraftDomain::Sewing => Self::Sewing,
+            CraftDomain::Manufacturing => Self::Manufacturing,
+            CraftDomain::Repair => Self::Repair,
+            CraftDomain::Engineering => Self::Engineering,
+            CraftDomain::Handicraft => Self::Handicraft,
+            CraftDomain::Invention => Self::Invention,
         }
     }
 }
 #[rustfmt::skip]
-impl CraftScope {
+impl CraftDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Electronics, Self::Electronics) |
@@ -1950,31 +1950,31 @@ impl CraftScope {
     }
 }
 #[rustfmt::skip]
-impl From<Knowledge> for KnowledgeScope {
-    fn from(value: Knowledge) -> Self {
+impl From<KnowledgeDomain> for KnowledgeDomainScope {
+    fn from(value: KnowledgeDomain) -> Self {
         match value {
-            Knowledge::Mathematics => Self::Mathematics,
-            Knowledge::Logic => Self::Logic,
-            Knowledge::Physics => Self::Physics,
-            Knowledge::Chemistry => Self::Chemistry,
-            Knowledge::Biology => Self::Biology,
-            Knowledge::Astronomy => Self::Astronomy,
-            Knowledge::Geology => Self::Geology,
-            Knowledge::Computing => Self::Computing,
-            Knowledge::Physiology => Self::Physiology,
-            Knowledge::Statistics => Self::Statistics,
-            Knowledge::Research => Self::Research,
-            Knowledge::History => Self::History,
-            Knowledge::Linguistics => Self::Linguistics,
-            Knowledge::Philosophy => Self::Philosophy,
-            Knowledge::Economics => Self::Economics,
-            Knowledge::Cognition => Self::Cognition,
-            Knowledge::Taxonomy => Self::Taxonomy,
+            KnowledgeDomain::Mathematics => Self::Mathematics,
+            KnowledgeDomain::Logic => Self::Logic,
+            KnowledgeDomain::Physics => Self::Physics,
+            KnowledgeDomain::Chemistry => Self::Chemistry,
+            KnowledgeDomain::Biology => Self::Biology,
+            KnowledgeDomain::Astronomy => Self::Astronomy,
+            KnowledgeDomain::Geology => Self::Geology,
+            KnowledgeDomain::Computing => Self::Computing,
+            KnowledgeDomain::Physiology => Self::Physiology,
+            KnowledgeDomain::Statistics => Self::Statistics,
+            KnowledgeDomain::Research => Self::Research,
+            KnowledgeDomain::History => Self::History,
+            KnowledgeDomain::Linguistics => Self::Linguistics,
+            KnowledgeDomain::Philosophy => Self::Philosophy,
+            KnowledgeDomain::Economics => Self::Economics,
+            KnowledgeDomain::Cognition => Self::Cognition,
+            KnowledgeDomain::Taxonomy => Self::Taxonomy,
         }
     }
 }
 #[rustfmt::skip]
-impl KnowledgeScope {
+impl KnowledgeDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Mathematics, Self::Mathematics) |
@@ -1990,24 +1990,24 @@ impl KnowledgeScope {
     }
 }
 #[rustfmt::skip]
-impl From<Education> for EducationScope {
-    fn from(value: Education) -> Self {
+impl From<EducationDomain> for EducationDomainScope {
+    fn from(value: EducationDomain) -> Self {
         match value {
-            Education::Studying => Self::Studying,
-            Education::Teaching => Self::Teaching,
-            Education::Schooling => Self::Schooling,
-            Education::Skill => Self::Skill,
-            Education::Reading => Self::Reading,
-            Education::Memorization => Self::Memorization,
-            Education::Pedagogy => Self::Pedagogy,
-            Education::Mentoring => Self::Mentoring,
-            Education::Autodidacticism => Self::Autodidacticism,
-            Education::Credential => Self::Credential,
+            EducationDomain::Studying => Self::Studying,
+            EducationDomain::Teaching => Self::Teaching,
+            EducationDomain::Schooling => Self::Schooling,
+            EducationDomain::Skill => Self::Skill,
+            EducationDomain::Reading => Self::Reading,
+            EducationDomain::Memorization => Self::Memorization,
+            EducationDomain::Pedagogy => Self::Pedagogy,
+            EducationDomain::Mentoring => Self::Mentoring,
+            EducationDomain::Autodidacticism => Self::Autodidacticism,
+            EducationDomain::Credential => Self::Credential,
         }
     }
 }
 #[rustfmt::skip]
-impl EducationScope {
+impl EducationDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Studying, Self::Studying) |
@@ -2020,25 +2020,25 @@ impl EducationScope {
     }
 }
 #[rustfmt::skip]
-impl From<Language> for LanguageScope {
-    fn from(value: Language) -> Self {
+impl From<LanguageDomain> for LanguageDomainScope {
+    fn from(value: LanguageDomain) -> Self {
         match value {
-            Language::Writing => Self::Writing,
-            Language::Rhetoric => Self::Rhetoric,
-            Language::Translation => Self::Translation,
-            Language::Grammar => Self::Grammar,
-            Language::Conversation => Self::Conversation,
-            Language::Correspondence => Self::Correspondence,
-            Language::Listening => Self::Listening,
-            Language::Oratory => Self::Oratory,
-            Language::Editing => Self::Editing,
-            Language::Terminology => Self::Terminology,
-            Language::Notation => Self::Notation,
+            LanguageDomain::Writing => Self::Writing,
+            LanguageDomain::Rhetoric => Self::Rhetoric,
+            LanguageDomain::Translation => Self::Translation,
+            LanguageDomain::Grammar => Self::Grammar,
+            LanguageDomain::Conversation => Self::Conversation,
+            LanguageDomain::Correspondence => Self::Correspondence,
+            LanguageDomain::Listening => Self::Listening,
+            LanguageDomain::Oratory => Self::Oratory,
+            LanguageDomain::Editing => Self::Editing,
+            LanguageDomain::Terminology => Self::Terminology,
+            LanguageDomain::Notation => Self::Notation,
         }
     }
 }
 #[rustfmt::skip]
-impl LanguageScope {
+impl LanguageDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Writing, Self::Writing) |
@@ -2052,27 +2052,27 @@ impl LanguageScope {
     }
 }
 #[rustfmt::skip]
-impl From<Art> for ArtScope {
-    fn from(value: Art) -> Self {
+impl From<ArtDomain> for ArtDomainScope {
+    fn from(value: ArtDomain) -> Self {
         match value {
-            Art::Fiction => Self::Fiction,
-            Art::Poetry => Self::Poetry,
-            Art::Music => Self::Music,
-            Art::Painting => Self::Painting,
-            Art::Photography => Self::Photography,
-            Art::Film => Self::Film,
-            Art::Theater => Self::Theater,
-            Art::Dance => Self::Dance,
-            Art::Design => Self::Design,
-            Art::Sculpture => Self::Sculpture,
-            Art::Creativity => Self::Creativity,
-            Art::Storytelling => Self::Storytelling,
-            Art::Publishing => Self::Publishing,
+            ArtDomain::Fiction => Self::Fiction,
+            ArtDomain::Poetry => Self::Poetry,
+            ArtDomain::Music => Self::Music,
+            ArtDomain::Painting => Self::Painting,
+            ArtDomain::Photography => Self::Photography,
+            ArtDomain::Film => Self::Film,
+            ArtDomain::Theater => Self::Theater,
+            ArtDomain::Dance => Self::Dance,
+            ArtDomain::Design => Self::Design,
+            ArtDomain::Sculpture => Self::Sculpture,
+            ArtDomain::Creativity => Self::Creativity,
+            ArtDomain::Storytelling => Self::Storytelling,
+            ArtDomain::Publishing => Self::Publishing,
         }
     }
 }
 #[rustfmt::skip]
-impl ArtScope {
+impl ArtDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Fiction, Self::Fiction) |
@@ -2086,27 +2086,27 @@ impl ArtScope {
     }
 }
 #[rustfmt::skip]
-impl From<Kinship> for KinshipScope {
-    fn from(value: Kinship) -> Self {
+impl From<KinshipDomain> for KinshipDomainScope {
+    fn from(value: KinshipDomain) -> Self {
         match value {
-            Kinship::Friendship => Self::Friendship,
-            Kinship::Romance => Self::Romance,
-            Kinship::Marriage => Self::Marriage,
-            Kinship::Family => Self::Family,
-            Kinship::Parenting => Self::Parenting,
-            Kinship::Relatives => Self::Relatives,
-            Kinship::Reconciliation => Self::Reconciliation,
-            Kinship::Boundaries => Self::Boundaries,
-            Kinship::Intimacy => Self::Intimacy,
-            Kinship::Rapport => Self::Rapport,
-            Kinship::Caregiving => Self::Caregiving,
-            Kinship::Grief => Self::Grief,
-            Kinship::Belonging => Self::Belonging,
+            KinshipDomain::Friendship => Self::Friendship,
+            KinshipDomain::Romance => Self::Romance,
+            KinshipDomain::Marriage => Self::Marriage,
+            KinshipDomain::Family => Self::Family,
+            KinshipDomain::Parenting => Self::Parenting,
+            KinshipDomain::Relatives => Self::Relatives,
+            KinshipDomain::Reconciliation => Self::Reconciliation,
+            KinshipDomain::Boundaries => Self::Boundaries,
+            KinshipDomain::Intimacy => Self::Intimacy,
+            KinshipDomain::Rapport => Self::Rapport,
+            KinshipDomain::Caregiving => Self::Caregiving,
+            KinshipDomain::Grief => Self::Grief,
+            KinshipDomain::Belonging => Self::Belonging,
         }
     }
 }
 #[rustfmt::skip]
-impl KinshipScope {
+impl KinshipDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Friendship, Self::Friendship) |
@@ -2121,27 +2121,27 @@ impl KinshipScope {
     }
 }
 #[rustfmt::skip]
-impl From<Selfhood> for SelfhoodScope {
-    fn from(value: Selfhood) -> Self {
+impl From<SelfhoodDomain> for SelfhoodDomainScope {
+    fn from(value: SelfhoodDomain) -> Self {
         match value {
-            Selfhood::Growth => Self::Growth,
-            Selfhood::Introspection => Self::Introspection,
-            Selfhood::Discipline => Self::Discipline,
-            Selfhood::Emotion => Self::Emotion,
-            Selfhood::Virtue => Self::Virtue,
-            Selfhood::Motivation => Self::Motivation,
-            Selfhood::Confidence => Self::Confidence,
-            Selfhood::Identity => Self::Identity,
-            Selfhood::Purpose => Self::Purpose,
-            Selfhood::Decision => Self::Decision,
-            Selfhood::Temperament => Self::Temperament,
-            Selfhood::Wellbeing => Self::Wellbeing,
-            Selfhood::Composure => Self::Composure,
+            SelfhoodDomain::Growth => Self::Growth,
+            SelfhoodDomain::Introspection => Self::Introspection,
+            SelfhoodDomain::Discipline => Self::Discipline,
+            SelfhoodDomain::Emotion => Self::Emotion,
+            SelfhoodDomain::Virtue => Self::Virtue,
+            SelfhoodDomain::Motivation => Self::Motivation,
+            SelfhoodDomain::Confidence => Self::Confidence,
+            SelfhoodDomain::Identity => Self::Identity,
+            SelfhoodDomain::Purpose => Self::Purpose,
+            SelfhoodDomain::Decision => Self::Decision,
+            SelfhoodDomain::Temperament => Self::Temperament,
+            SelfhoodDomain::Wellbeing => Self::Wellbeing,
+            SelfhoodDomain::Composure => Self::Composure,
         }
     }
 }
 #[rustfmt::skip]
-impl SelfhoodScope {
+impl SelfhoodDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Growth, Self::Growth) |
@@ -2156,28 +2156,28 @@ impl SelfhoodScope {
     }
 }
 #[rustfmt::skip]
-impl From<Spirituality> for SpiritualityScope {
-    fn from(value: Spirituality) -> Self {
+impl From<SpiritualityDomain> for SpiritualityDomainScope {
+    fn from(value: SpiritualityDomain) -> Self {
         match value {
-            Spirituality::Worship => Self::Worship,
-            Spirituality::Prayer => Self::Prayer,
-            Spirituality::Meditation => Self::Meditation,
-            Spirituality::Ritual => Self::Ritual,
-            Spirituality::Faith => Self::Faith,
-            Spirituality::Theology => Self::Theology,
-            Spirituality::Contemplation => Self::Contemplation,
-            Spirituality::Pilgrimage => Self::Pilgrimage,
-            Spirituality::Scripture => Self::Scripture,
-            Spirituality::Ethics => Self::Ethics,
-            Spirituality::Mortality => Self::Mortality,
-            Spirituality::Transcendence => Self::Transcendence,
-            Spirituality::Asceticism => Self::Asceticism,
-            Spirituality::Wisdom => Self::Wisdom,
+            SpiritualityDomain::Worship => Self::Worship,
+            SpiritualityDomain::Prayer => Self::Prayer,
+            SpiritualityDomain::Meditation => Self::Meditation,
+            SpiritualityDomain::Ritual => Self::Ritual,
+            SpiritualityDomain::Faith => Self::Faith,
+            SpiritualityDomain::Theology => Self::Theology,
+            SpiritualityDomain::Contemplation => Self::Contemplation,
+            SpiritualityDomain::Pilgrimage => Self::Pilgrimage,
+            SpiritualityDomain::Scripture => Self::Scripture,
+            SpiritualityDomain::Ethics => Self::Ethics,
+            SpiritualityDomain::Mortality => Self::Mortality,
+            SpiritualityDomain::Transcendence => Self::Transcendence,
+            SpiritualityDomain::Asceticism => Self::Asceticism,
+            SpiritualityDomain::Wisdom => Self::Wisdom,
         }
     }
 }
 #[rustfmt::skip]
-impl SpiritualityScope {
+impl SpiritualityDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Worship, Self::Worship) |
@@ -2192,27 +2192,27 @@ impl SpiritualityScope {
     }
 }
 #[rustfmt::skip]
-impl From<Governance> for GovernanceScope {
-    fn from(value: Governance) -> Self {
+impl From<GovernanceDomain> for GovernanceDomainScope {
+    fn from(value: GovernanceDomain) -> Self {
         match value {
-            Governance::Politics => Self::Politics,
-            Governance::Government => Self::Government,
-            Governance::Administration => Self::Administration,
-            Governance::Citizenship => Self::Citizenship,
-            Governance::Elections => Self::Elections,
-            Governance::Activism => Self::Activism,
-            Governance::Policy => Self::Policy,
-            Governance::Diplomacy => Self::Diplomacy,
-            Governance::Movements => Self::Movements,
-            Governance::Organizing => Self::Organizing,
-            Governance::Services => Self::Services,
-            Governance::Naturalization => Self::Naturalization,
-            Governance::War => Self::War,
+            GovernanceDomain::Politics => Self::Politics,
+            GovernanceDomain::Government => Self::Government,
+            GovernanceDomain::Administration => Self::Administration,
+            GovernanceDomain::Citizenship => Self::Citizenship,
+            GovernanceDomain::Elections => Self::Elections,
+            GovernanceDomain::Activism => Self::Activism,
+            GovernanceDomain::Policy => Self::Policy,
+            GovernanceDomain::Diplomacy => Self::Diplomacy,
+            GovernanceDomain::Movements => Self::Movements,
+            GovernanceDomain::Organizing => Self::Organizing,
+            GovernanceDomain::Services => Self::Services,
+            GovernanceDomain::Naturalization => Self::Naturalization,
+            GovernanceDomain::War => Self::War,
         }
     }
 }
 #[rustfmt::skip]
-impl GovernanceScope {
+impl GovernanceDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Politics, Self::Politics) |
@@ -2227,26 +2227,26 @@ impl GovernanceScope {
     }
 }
 #[rustfmt::skip]
-impl From<Law> for LawScope {
-    fn from(value: Law) -> Self {
+impl From<LawDomain> for LawDomainScope {
+    fn from(value: LawDomain) -> Self {
         match value {
-            Law::Rights => Self::Rights,
-            Law::Contract => Self::Contract,
-            Law::Title => Self::Title,
-            Law::Crime => Self::Crime,
-            Law::Litigation => Self::Litigation,
-            Law::Compliance => Self::Compliance,
-            Law::Custody => Self::Custody,
-            Law::Liability => Self::Liability,
-            Law::Procedure => Self::Procedure,
-            Law::Justice => Self::Justice,
-            Law::Policing => Self::Policing,
-            Law::Arbitration => Self::Arbitration,
+            LawDomain::Rights => Self::Rights,
+            LawDomain::Contract => Self::Contract,
+            LawDomain::Title => Self::Title,
+            LawDomain::Crime => Self::Crime,
+            LawDomain::Litigation => Self::Litigation,
+            LawDomain::Compliance => Self::Compliance,
+            LawDomain::Custody => Self::Custody,
+            LawDomain::Liability => Self::Liability,
+            LawDomain::Procedure => Self::Procedure,
+            LawDomain::Justice => Self::Justice,
+            LawDomain::Policing => Self::Policing,
+            LawDomain::Arbitration => Self::Arbitration,
         }
     }
 }
 #[rustfmt::skip]
-impl LawScope {
+impl LawDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Rights, Self::Rights) |
@@ -2260,23 +2260,23 @@ impl LawScope {
     }
 }
 #[rustfmt::skip]
-impl From<Community> for CommunityScope {
-    fn from(value: Community) -> Self {
+impl From<CommunityDomain> for CommunityDomainScope {
+    fn from(value: CommunityDomain) -> Self {
         match value {
-            Community::Neighborliness => Self::Neighborliness,
-            Community::Volunteering => Self::Volunteering,
-            Community::Solidarity => Self::Solidarity,
-            Community::Membership => Self::Membership,
-            Community::Gatherings => Self::Gatherings,
-            Community::Reputation => Self::Reputation,
-            Community::Service => Self::Service,
-            Community::Hospitality => Self::Hospitality,
-            Community::Institutions => Self::Institutions,
+            CommunityDomain::Neighborliness => Self::Neighborliness,
+            CommunityDomain::Volunteering => Self::Volunteering,
+            CommunityDomain::Solidarity => Self::Solidarity,
+            CommunityDomain::Membership => Self::Membership,
+            CommunityDomain::Gatherings => Self::Gatherings,
+            CommunityDomain::Reputation => Self::Reputation,
+            CommunityDomain::Service => Self::Service,
+            CommunityDomain::Hospitality => Self::Hospitality,
+            CommunityDomain::Institutions => Self::Institutions,
         }
     }
 }
 #[rustfmt::skip]
-impl CommunityScope {
+impl CommunityDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Neighborliness, Self::Neighborliness)
@@ -2289,28 +2289,28 @@ impl CommunityScope {
     }
 }
 #[rustfmt::skip]
-impl From<Nature> for NatureScope {
-    fn from(value: Nature) -> Self {
+impl From<NatureDomain> for NatureDomainScope {
+    fn from(value: NatureDomain) -> Self {
         match value {
-            Nature::Agriculture => Self::Agriculture,
-            Nature::Gardening => Self::Gardening,
-            Nature::Horticulture => Self::Horticulture,
-            Nature::Husbandry => Self::Husbandry,
-            Nature::Pets => Self::Pets,
-            Nature::Forestry => Self::Forestry,
-            Nature::Fishing => Self::Fishing,
-            Nature::Hunting => Self::Hunting,
-            Nature::Conservation => Self::Conservation,
-            Nature::Weather => Self::Weather,
-            Nature::Wilderness => Self::Wilderness,
-            Nature::Sustainability => Self::Sustainability,
-            Nature::Resources => Self::Resources,
-            Nature::Stewardship => Self::Stewardship,
+            NatureDomain::Agriculture => Self::Agriculture,
+            NatureDomain::Gardening => Self::Gardening,
+            NatureDomain::Horticulture => Self::Horticulture,
+            NatureDomain::Husbandry => Self::Husbandry,
+            NatureDomain::Pets => Self::Pets,
+            NatureDomain::Forestry => Self::Forestry,
+            NatureDomain::Fishing => Self::Fishing,
+            NatureDomain::Hunting => Self::Hunting,
+            NatureDomain::Conservation => Self::Conservation,
+            NatureDomain::Weather => Self::Weather,
+            NatureDomain::Wilderness => Self::Wilderness,
+            NatureDomain::Sustainability => Self::Sustainability,
+            NatureDomain::Resources => Self::Resources,
+            NatureDomain::Stewardship => Self::Stewardship,
         }
     }
 }
 #[rustfmt::skip]
-impl NatureScope {
+impl NatureDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Agriculture, Self::Agriculture) |
@@ -2325,25 +2325,25 @@ impl NatureScope {
     }
 }
 #[rustfmt::skip]
-impl From<Travel> for TravelScope {
-    fn from(value: Travel) -> Self {
+impl From<TravelDomain> for TravelDomainScope {
+    fn from(value: TravelDomain) -> Self {
         match value {
-            Travel::Itinerary => Self::Itinerary,
-            Travel::Destination => Self::Destination,
-            Travel::Transportation => Self::Transportation,
-            Travel::Driving => Self::Driving,
-            Travel::Navigation => Self::Navigation,
-            Travel::Commuting => Self::Commuting,
-            Travel::Logistics => Self::Logistics,
-            Travel::Migration => Self::Migration,
-            Travel::Tourism => Self::Tourism,
-            Travel::Transit => Self::Transit,
-            Travel::Cycling => Self::Cycling,
+            TravelDomain::Itinerary => Self::Itinerary,
+            TravelDomain::Destination => Self::Destination,
+            TravelDomain::Transportation => Self::Transportation,
+            TravelDomain::Driving => Self::Driving,
+            TravelDomain::Navigation => Self::Navigation,
+            TravelDomain::Commuting => Self::Commuting,
+            TravelDomain::Logistics => Self::Logistics,
+            TravelDomain::Migration => Self::Migration,
+            TravelDomain::Tourism => Self::Tourism,
+            TravelDomain::Transit => Self::Transit,
+            TravelDomain::Cycling => Self::Cycling,
         }
     }
 }
 #[rustfmt::skip]
-impl TravelScope {
+impl TravelDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Itinerary, Self::Itinerary) |
@@ -2357,25 +2357,25 @@ impl TravelScope {
     }
 }
 #[rustfmt::skip]
-impl From<Commerce> for CommerceScope {
-    fn from(value: Commerce) -> Self {
+impl From<CommerceDomain> for CommerceDomainScope {
+    fn from(value: CommerceDomain) -> Self {
         match value {
-            Commerce::Selling => Self::Selling,
-            Commerce::Buying => Self::Buying,
-            Commerce::Marketing => Self::Marketing,
-            Commerce::Retail => Self::Retail,
-            Commerce::Sourcing => Self::Sourcing,
-            Commerce::Trade => Self::Trade,
-            Commerce::Support => Self::Support,
-            Commerce::Pricing => Self::Pricing,
-            Commerce::Negotiation => Self::Negotiation,
-            Commerce::Assets => Self::Assets,
-            Commerce::Market => Self::Market,
+            CommerceDomain::Selling => Self::Selling,
+            CommerceDomain::Buying => Self::Buying,
+            CommerceDomain::Marketing => Self::Marketing,
+            CommerceDomain::Retail => Self::Retail,
+            CommerceDomain::Sourcing => Self::Sourcing,
+            CommerceDomain::Trade => Self::Trade,
+            CommerceDomain::Support => Self::Support,
+            CommerceDomain::Pricing => Self::Pricing,
+            CommerceDomain::Negotiation => Self::Negotiation,
+            CommerceDomain::Assets => Self::Assets,
+            CommerceDomain::Market => Self::Market,
         }
     }
 }
 #[rustfmt::skip]
-impl CommerceScope {
+impl CommerceDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Selling, Self::Selling) |
@@ -2388,25 +2388,25 @@ impl CommerceScope {
     }
 }
 #[rustfmt::skip]
-impl From<Leisure> for LeisureScope {
-    fn from(value: Leisure) -> Self {
+impl From<LeisureDomain> for LeisureDomainScope {
+    fn from(value: LeisureDomain) -> Self {
         match value {
-            Leisure::Recreation => Self::Recreation,
-            Leisure::Sport => Self::Sport,
-            Leisure::Games => Self::Games,
-            Leisure::Hobby => Self::Hobby,
-            Leisure::Entertainment => Self::Entertainment,
-            Leisure::Collecting => Self::Collecting,
-            Leisure::Outdoors => Self::Outdoors,
-            Leisure::Play => Self::Play,
-            Leisure::Relaxation => Self::Relaxation,
-            Leisure::Celebration => Self::Celebration,
-            Leisure::Fandom => Self::Fandom,
+            LeisureDomain::Recreation => Self::Recreation,
+            LeisureDomain::Sport => Self::Sport,
+            LeisureDomain::Games => Self::Games,
+            LeisureDomain::Hobby => Self::Hobby,
+            LeisureDomain::Entertainment => Self::Entertainment,
+            LeisureDomain::Collecting => Self::Collecting,
+            LeisureDomain::Outdoors => Self::Outdoors,
+            LeisureDomain::Play => Self::Play,
+            LeisureDomain::Relaxation => Self::Relaxation,
+            LeisureDomain::Celebration => Self::Celebration,
+            LeisureDomain::Fandom => Self::Fandom,
         }
     }
 }
 #[rustfmt::skip]
-impl LeisureScope {
+impl LeisureDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Recreation, Self::Recreation) |
@@ -2419,20 +2419,20 @@ impl LeisureScope {
     }
 }
 #[rustfmt::skip]
-impl From<Appearance> for AppearanceScope {
-    fn from(value: Appearance) -> Self {
+impl From<AppearanceDomain> for AppearanceDomainScope {
+    fn from(value: AppearanceDomain) -> Self {
         match value {
-            Appearance::Clothing => Self::Clothing,
-            Appearance::Grooming => Self::Grooming,
-            Appearance::Style => Self::Style,
-            Appearance::Cosmetics => Self::Cosmetics,
-            Appearance::Etiquette => Self::Etiquette,
-            Appearance::Comportment => Self::Comportment,
+            AppearanceDomain::Clothing => Self::Clothing,
+            AppearanceDomain::Grooming => Self::Grooming,
+            AppearanceDomain::Style => Self::Style,
+            AppearanceDomain::Cosmetics => Self::Cosmetics,
+            AppearanceDomain::Etiquette => Self::Etiquette,
+            AppearanceDomain::Comportment => Self::Comportment,
         }
     }
 }
 #[rustfmt::skip]
-impl AppearanceScope {
+impl AppearanceDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Clothing, Self::Clothing) |
@@ -2443,22 +2443,22 @@ impl AppearanceScope {
     }
 }
 #[rustfmt::skip]
-impl From<Safety> for SafetyScope {
-    fn from(value: Safety) -> Self {
+impl From<SafetyDomain> for SafetyDomainScope {
+    fn from(value: SafetyDomain) -> Self {
         match value {
-            Safety::Protection => Self::Protection,
-            Safety::Preparedness => Self::Preparedness,
-            Safety::Risk => Self::Risk,
-            Safety::Cybersecurity => Self::Cybersecurity,
-            Safety::Privacy => Self::Privacy,
-            Safety::Disaster => Self::Disaster,
-            Safety::Military => Self::Military,
-            Safety::Deterrence => Self::Deterrence,
+            SafetyDomain::Protection => Self::Protection,
+            SafetyDomain::Preparedness => Self::Preparedness,
+            SafetyDomain::Risk => Self::Risk,
+            SafetyDomain::Cybersecurity => Self::Cybersecurity,
+            SafetyDomain::Privacy => Self::Privacy,
+            SafetyDomain::Disaster => Self::Disaster,
+            SafetyDomain::Military => Self::Military,
+            SafetyDomain::Deterrence => Self::Deterrence,
         }
     }
 }
 #[rustfmt::skip]
-impl SafetyScope {
+impl SafetyDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Protection, Self::Protection) |
@@ -2470,23 +2470,23 @@ impl SafetyScope {
     }
 }
 #[rustfmt::skip]
-impl From<Information> for InformationScope {
-    fn from(value: Information) -> Self {
+impl From<InformationDomain> for InformationDomainScope {
+    fn from(value: InformationDomain) -> Self {
         match value {
-            Information::Curation => Self::Curation,
-            Information::RecordKeeping => Self::RecordKeeping,
-            Information::Documentation => Self::Documentation,
-            Information::News => Self::News,
-            Information::Broadcasting => Self::Broadcasting,
-            Information::Archives => Self::Archives,
-            Information::Database => Self::Database,
-            Information::Retrieval => Self::Retrieval,
-            Information::Classification => Self::Classification,
+            InformationDomain::Curation => Self::Curation,
+            InformationDomain::RecordKeeping => Self::RecordKeeping,
+            InformationDomain::Documentation => Self::Documentation,
+            InformationDomain::News => Self::News,
+            InformationDomain::Broadcasting => Self::Broadcasting,
+            InformationDomain::Archives => Self::Archives,
+            InformationDomain::Database => Self::Database,
+            InformationDomain::Retrieval => Self::Retrieval,
+            InformationDomain::Classification => Self::Classification,
         }
     }
 }
 #[rustfmt::skip]
-impl InformationScope {
+impl InformationDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         matches!(
             (self, scope), (Self::All, _) | (Self::Curation, Self::Curation) |
@@ -2752,26 +2752,26 @@ impl EngineeringLeafScope {
     }
 }
 #[rustfmt::skip]
-impl From<Software> for SoftwareScope {
-    fn from(value: Software) -> Self {
+impl From<SoftwareDomain> for SoftwareDomainScope {
+    fn from(value: SoftwareDomain) -> Self {
         match value {
-            Software::Programming(payload) => Self::Programming(payload.into()),
-            Software::Theory => Self::Theory,
-            Software::Systems(payload) => Self::Systems(payload.into()),
-            Software::Distributed(payload) => Self::Distributed(payload.into()),
-            Software::Data(payload) => Self::Data(payload.into()),
-            Software::Intelligence(payload) => Self::Intelligence(payload.into()),
-            Software::Security(payload) => Self::Security(payload.into()),
-            Software::Quality(payload) => Self::Quality(payload.into()),
-            Software::Operations(payload) => Self::Operations(payload.into()),
-            Software::Observability(payload) => Self::Observability(payload.into()),
-            Software::Surfaces(payload) => Self::Surfaces(payload.into()),
-            Software::Engineering(payload) => Self::Engineering(payload.into()),
+            SoftwareDomain::Programming(payload) => Self::Programming(payload.into()),
+            SoftwareDomain::Theory => Self::Theory,
+            SoftwareDomain::Systems(payload) => Self::Systems(payload.into()),
+            SoftwareDomain::Distributed(payload) => Self::Distributed(payload.into()),
+            SoftwareDomain::Data(payload) => Self::Data(payload.into()),
+            SoftwareDomain::Intelligence(payload) => Self::Intelligence(payload.into()),
+            SoftwareDomain::Security(payload) => Self::Security(payload.into()),
+            SoftwareDomain::Quality(payload) => Self::Quality(payload.into()),
+            SoftwareDomain::Operations(payload) => Self::Operations(payload.into()),
+            SoftwareDomain::Observability(payload) => Self::Observability(payload.into()),
+            SoftwareDomain::Surfaces(payload) => Self::Surfaces(payload.into()),
+            SoftwareDomain::Engineering(payload) => Self::Engineering(payload.into()),
         }
     }
 }
 #[rustfmt::skip]
-impl SoftwareScope {
+impl SoftwareDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         match (self, scope) {
             (Self::All, _) => true,
@@ -2804,16 +2804,16 @@ impl SoftwareScope {
     }
 }
 #[rustfmt::skip]
-impl From<Technology> for TechnologyScope {
-    fn from(value: Technology) -> Self {
+impl From<TechnologyDomain> for TechnologyDomainScope {
+    fn from(value: TechnologyDomain) -> Self {
         match value {
-            Technology::Hardware(payload) => Self::Hardware(payload.into()),
-            Technology::Software(payload) => Self::Software(payload.into()),
+            TechnologyDomain::Hardware(payload) => Self::Hardware(payload.into()),
+            TechnologyDomain::Software(payload) => Self::Software(payload.into()),
         }
     }
 }
 #[rustfmt::skip]
-impl TechnologyScope {
+impl TechnologyDomainScope {
     pub fn contains_scope(&self, scope: &Self) -> bool {
         match (self, scope) {
             (Self::All, _) => true,
@@ -2973,92 +2973,92 @@ impl From<Vec<DomainScope>> for ScopeSet {
 
 #[rustfmt::skip]
 impl Domain {
-    pub fn health(payload: Health) -> Self {
+    pub fn health(payload: HealthDomain) -> Self {
         Self::Health(payload)
     }
-    pub fn food(payload: Food) -> Self {
+    pub fn food(payload: FoodDomain) -> Self {
         Self::Food(payload)
     }
-    pub fn home(payload: Home) -> Self {
+    pub fn home(payload: HomeDomain) -> Self {
         Self::Home(payload)
     }
-    pub fn finance(payload: Finance) -> Self {
+    pub fn finance(payload: FinanceDomain) -> Self {
         Self::Finance(payload)
     }
-    pub fn work(payload: Work) -> Self {
+    pub fn work(payload: WorkDomain) -> Self {
         Self::Work(payload)
     }
-    pub fn craft(payload: Craft) -> Self {
+    pub fn craft(payload: CraftDomain) -> Self {
         Self::Craft(payload)
     }
-    pub fn knowledge(payload: Knowledge) -> Self {
+    pub fn knowledge(payload: KnowledgeDomain) -> Self {
         Self::Knowledge(payload)
     }
-    pub fn education(payload: Education) -> Self {
+    pub fn education(payload: EducationDomain) -> Self {
         Self::Education(payload)
     }
-    pub fn language(payload: Language) -> Self {
+    pub fn language(payload: LanguageDomain) -> Self {
         Self::Language(payload)
     }
-    pub fn art(payload: Art) -> Self {
+    pub fn art(payload: ArtDomain) -> Self {
         Self::Art(payload)
     }
-    pub fn kinship(payload: Kinship) -> Self {
+    pub fn kinship(payload: KinshipDomain) -> Self {
         Self::Kinship(payload)
     }
-    pub fn selfhood(payload: Selfhood) -> Self {
+    pub fn selfhood(payload: SelfhoodDomain) -> Self {
         Self::Selfhood(payload)
     }
-    pub fn spirituality(payload: Spirituality) -> Self {
+    pub fn spirituality(payload: SpiritualityDomain) -> Self {
         Self::Spirituality(payload)
     }
-    pub fn governance(payload: Governance) -> Self {
+    pub fn governance(payload: GovernanceDomain) -> Self {
         Self::Governance(payload)
     }
-    pub fn law(payload: Law) -> Self {
+    pub fn law(payload: LawDomain) -> Self {
         Self::Law(payload)
     }
-    pub fn community(payload: Community) -> Self {
+    pub fn community(payload: CommunityDomain) -> Self {
         Self::Community(payload)
     }
-    pub fn nature(payload: Nature) -> Self {
+    pub fn nature(payload: NatureDomain) -> Self {
         Self::Nature(payload)
     }
-    pub fn travel(payload: Travel) -> Self {
+    pub fn travel(payload: TravelDomain) -> Self {
         Self::Travel(payload)
     }
-    pub fn commerce(payload: Commerce) -> Self {
+    pub fn commerce(payload: CommerceDomain) -> Self {
         Self::Commerce(payload)
     }
-    pub fn leisure(payload: Leisure) -> Self {
+    pub fn leisure(payload: LeisureDomain) -> Self {
         Self::Leisure(payload)
     }
-    pub fn appearance(payload: Appearance) -> Self {
+    pub fn appearance(payload: AppearanceDomain) -> Self {
         Self::Appearance(payload)
     }
-    pub fn safety(payload: Safety) -> Self {
+    pub fn safety(payload: SafetyDomain) -> Self {
         Self::Safety(payload)
     }
-    pub fn information(payload: Information) -> Self {
+    pub fn information(payload: InformationDomain) -> Self {
         Self::Information(payload)
     }
-    pub fn technology(payload: Technology) -> Self {
+    pub fn technology(payload: TechnologyDomain) -> Self {
         Self::Technology(payload)
     }
 }
 
 #[rustfmt::skip]
-impl Technology {
+impl TechnologyDomain {
     pub fn hardware(payload: HardwareLeaf) -> Self {
         Self::Hardware(payload)
     }
-    pub fn software(payload: Software) -> Self {
+    pub fn software(payload: SoftwareDomain) -> Self {
         Self::Software(payload)
     }
 }
 
 #[rustfmt::skip]
-impl Software {
+impl SoftwareDomain {
     pub fn programming(payload: ProgrammingLeaf) -> Self {
         Self::Programming(payload)
     }
@@ -3095,259 +3095,259 @@ impl Software {
 }
 
 #[rustfmt::skip]
-impl From<Health> for Domain {
-    fn from(payload: Health) -> Self {
+impl From<HealthDomain> for Domain {
+    fn from(payload: HealthDomain) -> Self {
         Self::Health(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Food> for Domain {
-    fn from(payload: Food) -> Self {
+impl From<FoodDomain> for Domain {
+    fn from(payload: FoodDomain) -> Self {
         Self::Food(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Home> for Domain {
-    fn from(payload: Home) -> Self {
+impl From<HomeDomain> for Domain {
+    fn from(payload: HomeDomain) -> Self {
         Self::Home(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Finance> for Domain {
-    fn from(payload: Finance) -> Self {
+impl From<FinanceDomain> for Domain {
+    fn from(payload: FinanceDomain) -> Self {
         Self::Finance(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Work> for Domain {
-    fn from(payload: Work) -> Self {
+impl From<WorkDomain> for Domain {
+    fn from(payload: WorkDomain) -> Self {
         Self::Work(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Craft> for Domain {
-    fn from(payload: Craft) -> Self {
+impl From<CraftDomain> for Domain {
+    fn from(payload: CraftDomain) -> Self {
         Self::Craft(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Knowledge> for Domain {
-    fn from(payload: Knowledge) -> Self {
+impl From<KnowledgeDomain> for Domain {
+    fn from(payload: KnowledgeDomain) -> Self {
         Self::Knowledge(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Education> for Domain {
-    fn from(payload: Education) -> Self {
+impl From<EducationDomain> for Domain {
+    fn from(payload: EducationDomain) -> Self {
         Self::Education(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Language> for Domain {
-    fn from(payload: Language) -> Self {
+impl From<LanguageDomain> for Domain {
+    fn from(payload: LanguageDomain) -> Self {
         Self::Language(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Art> for Domain {
-    fn from(payload: Art) -> Self {
+impl From<ArtDomain> for Domain {
+    fn from(payload: ArtDomain) -> Self {
         Self::Art(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Kinship> for Domain {
-    fn from(payload: Kinship) -> Self {
+impl From<KinshipDomain> for Domain {
+    fn from(payload: KinshipDomain) -> Self {
         Self::Kinship(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Selfhood> for Domain {
-    fn from(payload: Selfhood) -> Self {
+impl From<SelfhoodDomain> for Domain {
+    fn from(payload: SelfhoodDomain) -> Self {
         Self::Selfhood(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Spirituality> for Domain {
-    fn from(payload: Spirituality) -> Self {
+impl From<SpiritualityDomain> for Domain {
+    fn from(payload: SpiritualityDomain) -> Self {
         Self::Spirituality(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Governance> for Domain {
-    fn from(payload: Governance) -> Self {
+impl From<GovernanceDomain> for Domain {
+    fn from(payload: GovernanceDomain) -> Self {
         Self::Governance(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Law> for Domain {
-    fn from(payload: Law) -> Self {
+impl From<LawDomain> for Domain {
+    fn from(payload: LawDomain) -> Self {
         Self::Law(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Community> for Domain {
-    fn from(payload: Community) -> Self {
+impl From<CommunityDomain> for Domain {
+    fn from(payload: CommunityDomain) -> Self {
         Self::Community(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Nature> for Domain {
-    fn from(payload: Nature) -> Self {
+impl From<NatureDomain> for Domain {
+    fn from(payload: NatureDomain) -> Self {
         Self::Nature(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Travel> for Domain {
-    fn from(payload: Travel) -> Self {
+impl From<TravelDomain> for Domain {
+    fn from(payload: TravelDomain) -> Self {
         Self::Travel(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Commerce> for Domain {
-    fn from(payload: Commerce) -> Self {
+impl From<CommerceDomain> for Domain {
+    fn from(payload: CommerceDomain) -> Self {
         Self::Commerce(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Leisure> for Domain {
-    fn from(payload: Leisure) -> Self {
+impl From<LeisureDomain> for Domain {
+    fn from(payload: LeisureDomain) -> Self {
         Self::Leisure(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Appearance> for Domain {
-    fn from(payload: Appearance) -> Self {
+impl From<AppearanceDomain> for Domain {
+    fn from(payload: AppearanceDomain) -> Self {
         Self::Appearance(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Safety> for Domain {
-    fn from(payload: Safety) -> Self {
+impl From<SafetyDomain> for Domain {
+    fn from(payload: SafetyDomain) -> Self {
         Self::Safety(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Information> for Domain {
-    fn from(payload: Information) -> Self {
+impl From<InformationDomain> for Domain {
+    fn from(payload: InformationDomain) -> Self {
         Self::Information(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Technology> for Domain {
-    fn from(payload: Technology) -> Self {
+impl From<TechnologyDomain> for Domain {
+    fn from(payload: TechnologyDomain) -> Self {
         Self::Technology(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<HardwareLeaf> for Technology {
+impl From<HardwareLeaf> for TechnologyDomain {
     fn from(payload: HardwareLeaf) -> Self {
         Self::Hardware(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<Software> for Technology {
-    fn from(payload: Software) -> Self {
+impl From<SoftwareDomain> for TechnologyDomain {
+    fn from(payload: SoftwareDomain) -> Self {
         Self::Software(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<ProgrammingLeaf> for Software {
+impl From<ProgrammingLeaf> for SoftwareDomain {
     fn from(payload: ProgrammingLeaf) -> Self {
         Self::Programming(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<SystemsLeaf> for Software {
+impl From<SystemsLeaf> for SoftwareDomain {
     fn from(payload: SystemsLeaf) -> Self {
         Self::Systems(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<DistributedLeaf> for Software {
+impl From<DistributedLeaf> for SoftwareDomain {
     fn from(payload: DistributedLeaf) -> Self {
         Self::Distributed(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<DataLeaf> for Software {
+impl From<DataLeaf> for SoftwareDomain {
     fn from(payload: DataLeaf) -> Self {
         Self::Data(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<IntelligenceLeaf> for Software {
+impl From<IntelligenceLeaf> for SoftwareDomain {
     fn from(payload: IntelligenceLeaf) -> Self {
         Self::Intelligence(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<SecurityLeaf> for Software {
+impl From<SecurityLeaf> for SoftwareDomain {
     fn from(payload: SecurityLeaf) -> Self {
         Self::Security(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<QualityLeaf> for Software {
+impl From<QualityLeaf> for SoftwareDomain {
     fn from(payload: QualityLeaf) -> Self {
         Self::Quality(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<OperationsLeaf> for Software {
+impl From<OperationsLeaf> for SoftwareDomain {
     fn from(payload: OperationsLeaf) -> Self {
         Self::Operations(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<ObservabilityLeaf> for Software {
+impl From<ObservabilityLeaf> for SoftwareDomain {
     fn from(payload: ObservabilityLeaf) -> Self {
         Self::Observability(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<SurfacesLeaf> for Software {
+impl From<SurfacesLeaf> for SoftwareDomain {
     fn from(payload: SurfacesLeaf) -> Self {
         Self::Surfaces(payload)
     }
 }
 
 #[rustfmt::skip]
-impl From<EngineeringLeaf> for Software {
+impl From<EngineeringLeaf> for SoftwareDomain {
     fn from(payload: EngineeringLeaf) -> Self {
         Self::Engineering(payload)
     }
@@ -3370,8 +3370,8 @@ impl DomainScope {
     }
     pub fn equivalence_relations() -> Vec<Vec<DomainScope>> {
         vec![
-            vec![DomainScope::Information(InformationScope::Database),
-            DomainScope::Technology(TechnologyScope::Software(SoftwareScope::Data(DataLeafScope::All)))]
+            vec![DomainScope::Information(InformationDomainScope::Database),
+            DomainScope::Technology(TechnologyDomainScope::Software(SoftwareDomainScope::Data(DataLeafScope::All)))]
         ]
     }
 }
