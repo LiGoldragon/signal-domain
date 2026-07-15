@@ -22,16 +22,16 @@ nota-text = [
 ]
 
 [dependencies]
-nota    = { package = "nota", git = "https://github.com/LiGoldragon/nota.git", branch = "main", optional = true }
-schema-language = { git = "https://github.com/LiGoldragon/schema-language.git", branch = "main", optional = true }
+nota    = { package = "nota", git = "https://github.com/LiGoldragon/nota.git", rev = "18e2e8d0", optional = true }
+schema-language = { git = "https://github.com/LiGoldragon/schema-language.git", rev = "41a7b257dddb", optional = true }
 rkyv    = { version = "0.8", default-features = false, features = ["std", "bytecheck", "little_endian", "pointer_width_32", "unaligned"] }
 
 [build-dependencies]
-schema-rust = { package = "schema-rust", git = "https://github.com/LiGoldragon/schema-rust.git", branch = "main" }
+schema-rust = { package = "schema-rust", git = "https://github.com/LiGoldragon/schema-rust.git", rev = "a92a9d0e2940" }
 
 [dev-dependencies]
-nota = { package = "nota", git = "https://github.com/LiGoldragon/nota.git", branch = "main" }
-schema-language = { git = "https://github.com/LiGoldragon/schema-language.git", branch = "main" }
+nota = { package = "nota", git = "https://github.com/LiGoldragon/nota.git", rev = "18e2e8d0" }
+schema-language = { git = "https://github.com/LiGoldragon/schema-language.git", rev = "41a7b257dddb" }
 
 [lints.rust]
 unsafe_code = "forbid"

@@ -331,8 +331,8 @@ dependencies = [
 
 [[package]]
 name = "nota"
-version = "0.7.0"
-source = "git+https://github.com/LiGoldragon/nota.git?branch=main#f8de7a516b769fc544c7f8c0030e258833c1cf9b"
+version = "0.8.0"
+source = "git+https://github.com/LiGoldragon/nota.git?rev=18e2e8d0#18e2e8d0dba37e9e84045af3608585b51f6e3b36"
 dependencies = [
  "nota-derive",
  "rkyv",
@@ -340,8 +340,8 @@ dependencies = [
 
 [[package]]
 name = "nota-derive"
-version = "0.3.0"
-source = "git+https://github.com/LiGoldragon/nota.git?branch=main#f8de7a516b769fc544c7f8c0030e258833c1cf9b"
+version = "0.4.0"
+source = "git+https://github.com/LiGoldragon/nota.git?rev=18e2e8d0#18e2e8d0dba37e9e84045af3608585b51f6e3b36"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -484,18 +484,7 @@ checksum = "cf54715a573b99ac80df0bc206da022bcd442c974952c7b9720069370852e21f"
 [[package]]
 name = "schema-language"
 version = "0.2.0"
-source = "git+https://github.com/LiGoldragon/schema-language.git?branch=main#59d59aca5767523a929e5bd6fcd011a4a4e8ff23"
-dependencies = [
- "blake3",
- "nota",
- "rkyv",
- "thiserror",
-]
-
-[[package]]
-name = "schema-language"
-version = "0.2.0"
-source = "git+https://github.com/LiGoldragon/schema-language.git?rev=59d59aca5767523a929e5bd6fcd011a4a4e8ff23#59d59aca5767523a929e5bd6fcd011a4a4e8ff23"
+source = "git+https://github.com/LiGoldragon/schema-language.git?rev=41a7b257dddb#41a7b257dddbcaebf151a053c6fd43324a2a8e39"
 dependencies = [
  "blake3",
  "nota",
@@ -506,13 +495,13 @@ dependencies = [
 [[package]]
 name = "schema-rust"
 version = "0.8.0"
-source = "git+https://github.com/LiGoldragon/schema-rust.git?branch=main#87de872dbc4ee124a6a1133ff520b594063304f5"
+source = "git+https://github.com/LiGoldragon/schema-rust.git?rev=a92a9d0e2940#a92a9d0e2940b4debed74a2f7d06ea44c4360c99"
 dependencies = [
  "nota",
  "prettyplease",
  "proc-macro2",
  "quote",
- "schema-language 0.2.0 (git+https://github.com/LiGoldragon/schema-language.git?rev=59d59aca5767523a929e5bd6fcd011a4a4e8ff23)",
+ "schema-language",
  "syn",
  "thiserror",
  "triad-runtime",
@@ -560,7 +549,7 @@ version = "0.1.0"
 dependencies = [
  "nota",
  "rkyv",
- "schema-language 0.2.0 (git+https://github.com/LiGoldragon/schema-language.git?branch=main)",
+ "schema-language",
  "schema-rust",
 ]
 
@@ -609,9 +598,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "2.0.118"
+version = "2.0.119"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1b9ae57f904213ebb649ce6895b8a66c66f0203b9319718f69a5612a065b1422"
+checksum = "872831b642d1a07999a962a351ed35b955ea2cfc8f3862091e2a240a84f17297"
 dependencies = [
  "proc-macro2",
  "quote",
