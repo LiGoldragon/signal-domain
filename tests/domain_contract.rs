@@ -95,7 +95,7 @@ fn domain_round_trips_through_nota_text() {
         .parse::<Domain>()
         .expect("decode domain NOTA");
 
-    assert_eq!(rendered, "(Technology (Software (Data SchemaEvolution)))");
+    assert_eq!(rendered, "Technology.Software.Data.SchemaEvolution");
     assert_eq!(decoded, domain);
 }
 

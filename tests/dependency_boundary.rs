@@ -68,3 +68,41 @@ fn nota_text_feature_only_adds_canonical_text_projection() {
         );
     }
 }
+
+#[test]
+fn schema_family_is_exact_and_single_world() {
+    let output = Command::new("cargo")
+        .args(["tree", "--locked", "--all-features", "--duplicates"])
+        .output()
+        .expect("run duplicate dependency query");
+
+    assert!(output.status.success(), "status: {:?}", output.status);
+    assert!(
+        output.stdout.is_empty(),
+        "schema family must not contain duplicate package worlds:\n{}",
+        String::from_utf8_lossy(&output.stdout)
+    );
+
+    let manifest = include_str!("../Cargo.toml");
+    let lockfile = include_str!("../Cargo.lock");
+    for revision in [
+        "89dc3c85a9ff96d4e4d53accfd867df672cae5a8",
+        "9c217610c4b8d3bdaa9f95542e28c04424a593e3",
+        "3721656b0a654d47d9abde31f14d89d01f9305cf",
+    ] {
+        assert!(
+            manifest.contains(revision),
+            "manifest must pin exact schema-family revision {revision}"
+        );
+        assert!(
+            lockfile.contains(revision),
+            "lockfile must resolve exact schema-family revision {revision}"
+        );
+    }
+    for floating_source in ["branch =", "branch=", "path+"] {
+        assert!(
+            !manifest.contains(floating_source) && !lockfile.contains(floating_source),
+            "schema family must not contain floating or path source {floating_source}"
+        );
+    }
+}
