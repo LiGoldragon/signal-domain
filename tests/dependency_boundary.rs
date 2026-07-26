@@ -88,7 +88,7 @@ fn schema_family_is_exact_and_single_world() {
     for revision in [
         "89dc3c85a9ff96d4e4d53accfd867df672cae5a8",
         "9c217610c4b8d3bdaa9f95542e28c04424a593e3",
-        "3721656b0a654d47d9abde31f14d89d01f9305cf",
+        "c322127d85f442eb7a0d3152d8bacea638d3f6ea",
     ] {
         assert!(
             manifest.contains(revision),

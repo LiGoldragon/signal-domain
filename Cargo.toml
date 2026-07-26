@@ -27,7 +27,7 @@ schema-language = { git = "https://github.com/LiGoldragon/schema-language.git", 
 rkyv    = { version = "0.8", default-features = false, features = ["std", "bytecheck", "little_endian", "pointer_width_32", "unaligned"] }
 
 [build-dependencies]
-schema-rust = { package = "schema-rust", git = "https://github.com/LiGoldragon/schema-rust.git", rev = "3721656b0a654d47d9abde31f14d89d01f9305cf", default-features = false }
+schema-rust = { package = "schema-rust", git = "https://github.com/LiGoldragon/schema-rust.git", rev = "c322127d85f442eb7a0d3152d8bacea638d3f6ea", default-features = false }
 
 [dev-dependencies]
 nota = { package = "nota", git = "https://github.com/LiGoldragon/nota.git", rev = "89dc3c85a9ff96d4e4d53accfd867df672cae5a8" }
