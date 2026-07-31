@@ -18,7 +18,7 @@ fn default_dependency_tree_has_no_runtime_or_text_crates() {
         "kameo",
         "tokio",
         "redb",
-        "nota ",
+        "dotos ",
         "schema-language",
     ] {
         assert!(
@@ -29,7 +29,7 @@ fn default_dependency_tree_has_no_runtime_or_text_crates() {
 }
 
 #[test]
-fn nota_text_feature_only_adds_canonical_text_projection() {
+fn dotos_text_feature_only_adds_canonical_text_projection() {
     let output = Command::new("cargo")
         .args([
             "tree",
@@ -37,7 +37,7 @@ fn nota_text_feature_only_adds_canonical_text_projection() {
             "normal",
             "--no-default-features",
             "--features",
-            "nota-text",
+            "dotos-text",
         ])
         .output()
         .expect("run cargo tree");
@@ -46,12 +46,12 @@ fn nota_text_feature_only_adds_canonical_text_projection() {
     let tree = String::from_utf8(output.stdout).expect("dependency tree");
 
     assert!(
-        tree.contains("nota"),
-        "nota-text should opt into nota:\n{tree}"
+        tree.contains("dotos"),
+        "dotos-text should opt into dotos:\n{tree}"
     );
     assert!(
-        tree.contains("schema-language"),
-        "nota-text should opt into schema-language:\n{tree}"
+        tree.contains("schema"),
+        "dotos-text should opt into schema:\n{tree}"
     );
     for forbidden_crate in [
         "signal-spirit",
@@ -64,7 +64,7 @@ fn nota_text_feature_only_adds_canonical_text_projection() {
     ] {
         assert!(
             !tree.contains(forbidden_crate),
-            "nota-text dependency tree must not contain {forbidden_crate}:\n{tree}"
+            "dotos-text dependency tree must not contain {forbidden_crate}:\n{tree}"
         );
     }
 }
@@ -86,9 +86,9 @@ fn schema_family_is_exact_and_single_world() {
     let manifest = include_str!("../Cargo.toml");
     let lockfile = include_str!("../Cargo.lock");
     for revision in [
-        "89dc3c85a9ff96d4e4d53accfd867df672cae5a8",
-        "9c217610c4b8d3bdaa9f95542e28c04424a593e3",
-        "ee3897429e8e8836c3aee833ff11bc7a761b0d86",
+        "80c7b17f7ad3",
+        "c966e0ce30bb",
+        "6179a7cf1394083244dd3f3e1d2709f9ec08f7db",
     ] {
         assert!(
             manifest.contains(revision),

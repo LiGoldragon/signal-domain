@@ -8,4 +8,4 @@ The canonical source is `schema/domain.schema`. Rust contract types are generate
 
 The complete domain tree lives in [`schema/domain.schema`](schema/domain.schema).
 
-This crate intentionally contains no daemon, runtime, storage, or policy behavior. Default features are lean; enable `nota-text` only when the NOTA text projection is needed.
+This crate intentionally contains no daemon, runtime, storage, or policy behavior. Default features are lean; enable `dotos-text` only when the DOTOS text projection is needed.

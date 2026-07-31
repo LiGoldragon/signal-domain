@@ -106,6 +106,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "dotos"
+version = "0.10.0"
+source = "git+https://github.com/LiGoldragon/dotos.git?rev=80c7b17f7ad3#80c7b17f7ad3cf547d2624c6a243e5de5f85c9f3"
+dependencies = [
+ "dotos-derive",
+ "rkyv",
+]
+
+[[package]]
+name = "dotos-derive"
+version = "0.5.0"
+source = "git+https://github.com/LiGoldragon/dotos.git?rev=80c7b17f7ad3#80c7b17f7ad3cf547d2624c6a243e5de5f85c9f3"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "equivalent"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -214,25 +233,6 @@ dependencies = [
  "content-identity",
  "rkyv",
  "thiserror",
-]
-
-[[package]]
-name = "nota"
-version = "0.9.0"
-source = "git+https://github.com/LiGoldragon/nota.git?rev=89dc3c85a9ff96d4e4d53accfd867df672cae5a8#89dc3c85a9ff96d4e4d53accfd867df672cae5a8"
-dependencies = [
- "nota-derive",
- "rkyv",
-]
-
-[[package]]
-name = "nota-derive"
-version = "0.4.0"
-source = "git+https://github.com/LiGoldragon/nota.git?rev=89dc3c85a9ff96d4e4d53accfd867df672cae5a8#89dc3c85a9ff96d4e4d53accfd867df672cae5a8"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn",
 ]
 
 [[package]]
@@ -383,12 +383,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cf54715a573b99ac80df0bc206da022bcd442c974952c7b9720069370852e21f"
 
 [[package]]
-name = "schema-language"
+name = "schema"
 version = "0.3.0"
-source = "git+https://github.com/LiGoldragon/schema-language.git?rev=9c217610c4b8d3bdaa9f95542e28c04424a593e3#9c217610c4b8d3bdaa9f95542e28c04424a593e3"
+source = "git+https://github.com/LiGoldragon/schema.git?rev=c966e0ce30bb#c966e0ce30bbc53c809941cf462b7b6447fff185"
 dependencies = [
  "blake3",
- "nota",
+ "dotos",
+ "rkyv",
+ "thiserror",
+]
+
+[[package]]
+name = "schema-language"
+version = "0.3.0"
+source = "git+https://github.com/LiGoldragon/schema-language.git?rev=b834873de2a14c783f4be4f1af2dbb21f17ecd83#b834873de2a14c783f4be4f1af2dbb21f17ecd83"
+dependencies = [
+ "blake3",
+ "dotos",
  "rkyv",
  "thiserror",
 ]
@@ -396,9 +407,9 @@ dependencies = [
 [[package]]
 name = "schema-rust"
 version = "0.10.0"
-source = "git+https://github.com/LiGoldragon/schema-rust.git?rev=ee3897429e8e8836c3aee833ff11bc7a761b0d86#ee3897429e8e8836c3aee833ff11bc7a761b0d86"
+source = "git+https://github.com/LiGoldragon/schema-rust.git?rev=6179a7cf1394083244dd3f3e1d2709f9ec08f7db#6179a7cf1394083244dd3f3e1d2709f9ec08f7db"
 dependencies = [
- "nota",
+ "dotos",
  "prettyplease",
  "proc-macro2",
  "protos",
@@ -418,9 +429,9 @@ checksum = "f8fadd59c855ef2080decdef8ff161eb6661b86933c9d82e5ba29dc602a55aba"
 name = "signal-domain"
 version = "0.1.0"
 dependencies = [
- "nota",
+ "dotos",
  "rkyv",
- "schema-language",
+ "schema",
  "schema-rust",
 ]
 

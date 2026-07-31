@@ -16,22 +16,22 @@ path = "src/lib.rs"
 
 [features]
 default = []
-nota-text = [
-    "dep:nota",
-    "dep:schema-language",
+dotos-text = [
+    "dep:dotos",
+    "dep:schema",
 ]
 
 [dependencies]
-nota    = { package = "nota", git = "https://github.com/LiGoldragon/nota.git", rev = "89dc3c85a9ff96d4e4d53accfd867df672cae5a8", optional = true }
-schema-language = { git = "https://github.com/LiGoldragon/schema-language.git", rev = "9c217610c4b8d3bdaa9f95542e28c04424a593e3", optional = true }
+dotos  = { package = "dotos", git = "https://github.com/LiGoldragon/dotos.git", rev = "80c7b17f7ad3", optional = true }
+schema = { git = "https://github.com/LiGoldragon/schema.git", rev = "c966e0ce30bb", optional = true }
 rkyv    = { version = "0.8", default-features = false, features = ["std", "bytecheck", "little_endian", "pointer_width_32", "unaligned"] }
 
 [build-dependencies]
-schema-rust = { package = "schema-rust", git = "https://github.com/LiGoldragon/schema-rust.git", rev = "ee3897429e8e8836c3aee833ff11bc7a761b0d86", default-features = false }
+schema-rust = { package = "schema-rust", git = "https://github.com/LiGoldragon/schema-rust.git", rev = "6179a7cf1394083244dd3f3e1d2709f9ec08f7db", default-features = false }
 
 [dev-dependencies]
-nota = { package = "nota", git = "https://github.com/LiGoldragon/nota.git", rev = "89dc3c85a9ff96d4e4d53accfd867df672cae5a8" }
-schema-language = { git = "https://github.com/LiGoldragon/schema-language.git", rev = "9c217610c4b8d3bdaa9f95542e28c04424a593e3" }
+dotos  = { package = "dotos", git = "https://github.com/LiGoldragon/dotos.git", rev = "80c7b17f7ad3" }
+schema = { git = "https://github.com/LiGoldragon/schema.git", rev = "c966e0ce30bb" }
 
 [lints.rust]
 unsafe_code = "forbid"

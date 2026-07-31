@@ -84,46 +84,46 @@ fn scope_set_matches_any_domain() {
     assert!(scope_set.matches_any_domain(&domains));
 }
 
-#[cfg(feature = "nota-text")]
+#[cfg(feature = "dotos-text")]
 #[test]
-fn domain_round_trips_through_nota_text() {
-    use nota::{NotaEncode, NotaSource};
+fn domain_round_trips_through_dotos_text() {
+    use dotos::{DotosEncode, DotosSource};
 
     let domain = schema_domain();
-    let rendered = domain.to_nota();
-    let decoded = NotaSource::new(&rendered)
+    let rendered = domain.to_dotos();
+    let decoded = DotosSource::new(&rendered)
         .parse::<Domain>()
-        .expect("decode domain NOTA");
+        .expect("decode domain DOTOS");
 
     assert_eq!(rendered, "Technology.Software.Data.SchemaEvolution");
     assert_eq!(decoded, domain);
 }
 
-#[cfg(feature = "nota-text")]
+#[cfg(feature = "dotos-text")]
 #[test]
-fn all_domain_round_trips_through_nota_text() {
-    use nota::{NotaEncode, NotaSource};
+fn all_domain_round_trips_through_dotos_text() {
+    use dotos::{DotosEncode, DotosSource};
 
     let domain = Domain::All;
-    let rendered = domain.to_nota();
-    let decoded = NotaSource::new(&rendered)
+    let rendered = domain.to_dotos();
+    let decoded = DotosSource::new(&rendered)
         .parse::<Domain>()
-        .expect("decode all domain NOTA");
+        .expect("decode all domain DOTOS");
 
     assert_eq!(rendered, "All");
     assert_eq!(decoded, domain);
 }
 
-#[cfg(feature = "nota-text")]
+#[cfg(feature = "dotos-text")]
 #[test]
-fn scope_collection_round_trips_through_nota_text() {
-    use nota::{NotaEncode, NotaSource};
+fn scope_collection_round_trips_through_dotos_text() {
+    use dotos::{DotosEncode, DotosSource};
 
     let scopes = signal_domain::DomainScopes::new(vec![DomainScope::from(schema_domain())]);
-    let rendered = scopes.to_nota();
-    let decoded = NotaSource::new(&rendered)
+    let rendered = scopes.to_dotos();
+    let decoded = DotosSource::new(&rendered)
         .parse::<signal_domain::DomainScopes>()
-        .expect("decode domain scopes NOTA");
+        .expect("decode domain scopes DOTOS");
 
     assert_eq!(decoded, scopes);
 }

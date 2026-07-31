@@ -18,7 +18,7 @@
         inherit (rust) craneLib toolchain;
         schemaFilter = path: type:
           type == "regular" &&
-          (pkgs.lib.hasSuffix ".nota" path || pkgs.lib.hasSuffix ".schema" path);
+          (pkgs.lib.hasSuffix ".dotos" path || pkgs.lib.hasSuffix ".schema" path);
         src = rust.cleanSource {
           root = ./.;
           extraFilters = [ schemaFilter ];
