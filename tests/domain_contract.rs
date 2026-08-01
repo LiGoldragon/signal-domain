@@ -1,5 +1,7 @@
 use signal_domain::{
-    DataLeaf, Domain, DomainScope, EngineeringLeaf, ScopeSet, Software, Technology,
+    DataLeaf, DataLeafScope, Domain, DomainScope, EngineeringLeaf, EngineeringLeafScope,
+    ScopeContainment, ScopeDomainMatching, ScopeFiltering, ScopeOf, ScopeOverlap, ScopeSet,
+    Software, SoftwareScope, Technology, TechnologyScope,
 };
 
 fn schema_domain() -> Domain {
@@ -8,12 +10,34 @@ fn schema_domain() -> Domain {
     )))
 }
 
+fn schema_scope() -> DomainScope {
+    DomainScope::Technology(TechnologyScope::Software(SoftwareScope::Data(
+        DataLeafScope::SchemaEvolution,
+    )))
+}
+
+fn architecture_domain() -> Domain {
+    Domain::Technology(Technology::Software(Software::Engineering(
+        EngineeringLeaf::Architecture,
+    )))
+}
+
 fn architecture_scope() -> DomainScope {
-    DomainScope::Technology(signal_domain::TechnologyScope::Software(
-        signal_domain::SoftwareScope::Engineering(
-            signal_domain::EngineeringLeafScope::Architecture,
-        ),
-    ))
+    DomainScope::Technology(TechnologyScope::Software(SoftwareScope::Engineering(
+        EngineeringLeafScope::Architecture,
+    )))
+}
+
+fn engineering_all_domain() -> Domain {
+    Domain::Technology(Technology::Software(Software::Engineering(
+        EngineeringLeaf::All,
+    )))
+}
+
+fn engineering_all_scope() -> DomainScope {
+    DomainScope::Technology(TechnologyScope::Software(SoftwareScope::Engineering(
+        EngineeringLeafScope::All,
+    )))
 }
 
 #[test]
@@ -36,12 +60,207 @@ fn all_domain_round_trips_through_rkyv() {
 }
 
 #[test]
-fn domain_scope_matches_its_domain() {
-    let domain = schema_domain();
-    let scope = DomainScope::from(domain.clone());
+fn scope_of_projection_is_total_and_structure_preserving() {
+    // [assumption A4 — total structural projection]
+    // [assumption A18 — nested All]
+    assert_eq!(
+        <Domain as ScopeOf>::scope_of(&Domain::All),
+        DomainScope::All
+    );
+    assert_eq!(
+        <Domain as ScopeOf>::scope_of(&architecture_domain()),
+        architecture_scope()
+    );
+    assert_eq!(
+        <Domain as ScopeOf>::scope_of(&schema_domain()),
+        schema_scope()
+    );
+    assert_eq!(
+        <Domain as ScopeOf>::scope_of(&engineering_all_domain()),
+        engineering_all_scope()
+    );
+}
 
-    assert!(scope.contains_domain(&domain));
-    assert!(domain.matches_scope(&scope));
+#[test]
+fn scope_containment_matches_reference_matrix() {
+    // [assumption A5 — API attachment of root All]
+    // [assumption A6 — containment against All]
+    // [assumption A7 — containment reflexivity]
+    // [assumption A8 — ancestor containment]
+    // [assumption A9 — reverse containment]
+    // [assumption A10 — unrelated containment]
+    // [assumption A18 — nested All]
+    let all = DomainScope::All;
+    let architecture = architecture_scope();
+    let engineering = engineering_all_scope();
+    let schema = schema_scope();
+
+    assert!(<DomainScope as ScopeContainment>::contains_scope(
+        &all,
+        &architecture
+    ));
+    assert!(!<DomainScope as ScopeContainment>::contains_scope(
+        &architecture,
+        &all
+    ));
+    assert!(<DomainScope as ScopeContainment>::contains_scope(
+        &architecture,
+        &architecture
+    ));
+    assert!(<DomainScope as ScopeContainment>::contains_scope(
+        &engineering,
+        &architecture
+    ));
+    assert!(!<DomainScope as ScopeContainment>::contains_scope(
+        &architecture,
+        &engineering
+    ));
+    assert!(!<DomainScope as ScopeContainment>::contains_scope(
+        &schema,
+        &architecture
+    ));
+    assert!(!<DomainScope as ScopeContainment>::contains_scope(
+        &architecture,
+        &schema
+    ));
+    assert!(!<DomainScope as ScopeContainment>::contains_scope(
+        &engineering,
+        &schema
+    ));
+}
+
+#[test]
+fn scope_overlap_matches_reference_matrix() {
+    // [assumption A5 — API attachment of root All]
+    // [assumption A7 — containment reflexivity]
+    // [assumption A8 — ancestor containment]
+    // [assumption A10 — unrelated containment]
+    // [assumption A11 — overlap symmetry]
+    let all = DomainScope::All;
+    let architecture = architecture_scope();
+    let engineering = engineering_all_scope();
+    let schema = schema_scope();
+
+    assert!(<DomainScope as ScopeOverlap>::overlaps_scope(
+        &all,
+        &architecture
+    ));
+    assert!(<DomainScope as ScopeOverlap>::overlaps_scope(
+        &architecture,
+        &all
+    ));
+    assert!(<DomainScope as ScopeOverlap>::overlaps_scope(
+        &architecture,
+        &architecture
+    ));
+    assert!(<DomainScope as ScopeOverlap>::overlaps_scope(
+        &engineering,
+        &architecture
+    ));
+    assert!(<DomainScope as ScopeOverlap>::overlaps_scope(
+        &architecture,
+        &engineering
+    ));
+    assert!(!<DomainScope as ScopeOverlap>::overlaps_scope(
+        &schema,
+        &architecture
+    ));
+    assert!(!<DomainScope as ScopeOverlap>::overlaps_scope(
+        &architecture,
+        &schema
+    ));
+}
+
+#[test]
+fn scope_filtering_matches_reference_matrix() {
+    // [assumption A5 — API attachment of root All]
+    // [assumption A6 — containment against All]
+    // [assumption A7 — containment reflexivity]
+    // [assumption A8 — ancestor containment]
+    // [assumption A9 — reverse containment]
+    // [assumption A10 — unrelated containment]
+    // [assumption A12 — filtering direction]
+    let all = DomainScope::All;
+    let architecture = architecture_scope();
+    let engineering = engineering_all_scope();
+    let schema = schema_scope();
+
+    assert!(<DomainScope as ScopeFiltering>::matches_scope(
+        &all,
+        &architecture
+    ));
+    assert!(!<DomainScope as ScopeFiltering>::matches_scope(
+        &architecture,
+        &all
+    ));
+    assert!(<DomainScope as ScopeFiltering>::matches_scope(
+        &architecture,
+        &architecture
+    ));
+    assert!(<DomainScope as ScopeFiltering>::matches_scope(
+        &engineering,
+        &architecture
+    ));
+    assert!(!<DomainScope as ScopeFiltering>::matches_scope(
+        &architecture,
+        &engineering
+    ));
+    assert!(!<DomainScope as ScopeFiltering>::matches_scope(
+        &schema,
+        &architecture
+    ));
+    assert!(!<DomainScope as ScopeFiltering>::matches_scope(
+        &architecture,
+        &schema
+    ));
+}
+
+#[test]
+fn scope_domain_matching_matches_reference_matrix() {
+    // [assumption A5 — API attachment of root All]
+    // [assumption A13 — exact scope-domain match]
+    // [assumption A14 — ancestor scope-domain match]
+    // [assumption A15 — reverse scope-domain match]
+    // [assumption A16 — unrelated scope-domain match]
+    // [assumption A17 — domain-side All]
+    // [assumption A18 — nested All]
+    let all = DomainScope::All;
+    let architecture = architecture_scope();
+    let engineering = engineering_all_scope();
+    let schema = schema_scope();
+
+    assert!(<DomainScope as ScopeDomainMatching>::matches_domain(
+        &all,
+        &architecture_domain()
+    ));
+    assert!(<DomainScope as ScopeDomainMatching>::matches_domain(
+        &all,
+        &Domain::All
+    ));
+    assert!(<DomainScope as ScopeDomainMatching>::matches_domain(
+        &architecture,
+        &Domain::All
+    ));
+    assert!(<DomainScope as ScopeDomainMatching>::matches_domain(
+        &architecture,
+        &architecture_domain()
+    ));
+    assert!(<DomainScope as ScopeDomainMatching>::matches_domain(
+        &engineering,
+        &architecture_domain()
+    ));
+    assert!(!<DomainScope as ScopeDomainMatching>::matches_domain(
+        &architecture,
+        &engineering_all_domain()
+    ));
+    assert!(!<DomainScope as ScopeDomainMatching>::matches_domain(
+        &schema,
+        &architecture_domain()
+    ));
+    assert!(!<DomainScope as ScopeDomainMatching>::matches_domain(
+        &engineering,
+        &schema_domain()
+    ));
 }
 
 #[test]
@@ -57,19 +276,12 @@ fn domain_scopes_match_any_domain() {
 }
 
 #[test]
-fn all_domain_scope_matches_any_domain() {
+fn all_domain_scope_collection_matches_any_domain() {
     let concrete_domain = schema_domain();
-    let all_domain = Domain::All;
     let all_scope = DomainScope::All;
-    let all_scopes = signal_domain::DomainScopes::new(vec![all_scope.clone()]);
+    let all_scopes = signal_domain::DomainScopes::new(vec![all_scope]);
     let concrete_domains = vec![concrete_domain.clone()];
 
-    assert_eq!(DomainScope::from(all_domain.clone()), all_scope);
-    assert!(all_scope.matches_domain(&concrete_domain));
-    assert!(concrete_domain.matches_scope(&all_scope));
-    assert!(all_scope.matches_scope(&architecture_scope()));
-    assert!(architecture_scope().matches_scope(&all_scope));
-    assert!(architecture_scope().matches_domain(&all_domain));
     assert!(all_scopes.matches_any_domain(&concrete_domains));
 }
 

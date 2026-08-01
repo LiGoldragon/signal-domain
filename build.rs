@@ -21,7 +21,7 @@ impl SchemaBuild {
         println!("cargo:rerun-if-changed=schema/domain.schema");
         println!("cargo:rerun-if-changed=src/schema/domain.rs");
 
-        let plan = GenerationPlan::new(&self.crate_root, "signal-domain", "0.1.0")
+        let plan = GenerationPlan::new(&self.crate_root, "signal-domain", "0.2.0")
             .with_module(ModuleEmission::declaration_module("domain"));
 
         GenerationDriver::new(plan)
