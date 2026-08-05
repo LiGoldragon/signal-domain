@@ -86,9 +86,9 @@ fn schema_family_is_exact_and_single_world() {
     let manifest = include_str!("../Cargo.toml");
     let lockfile = include_str!("../Cargo.lock");
     for revision in [
-        "80c7b17f7ad3",
-        "c966e0ce30bb",
-        "6179a7cf1394083244dd3f3e1d2709f9ec08f7db",
+        "80c7b17f7ad3cf547d2624c6a243e5de5f85c9f3",
+        "36a83e8d49989605c1fb9c7be265ddf10a752c31",
+        "f0ce3aaddddb9fb9b8d2bcc8548a22efe7578cc0",
     ] {
         assert!(
             manifest.contains(revision),
@@ -105,4 +105,34 @@ fn schema_family_is_exact_and_single_world() {
             "schema family must not contain floating or path source {floating_source}"
         );
     }
+
+    assert!(
+        manifest.contains("version = \"=0.8.17\""),
+        "the archive ABI dependency must pin rkyv 0.8.17 exactly"
+    );
+    assert!(
+        lockfile.contains("name = \"rkyv\"\nversion = \"0.8.17\""),
+        "the lockfile must resolve rkyv 0.8.17"
+    );
+
+    let dotos_tree = Command::new("cargo")
+        .args(["tree", "--locked", "--all-features", "-i", "dotos"])
+        .output()
+        .expect("run Dotos source-identity query");
+    assert!(
+        dotos_tree.status.success(),
+        "status: {:?}",
+        dotos_tree.status
+    );
+    let dotos_tree = String::from_utf8(dotos_tree.stdout).expect("Dotos source identity");
+    assert!(
+        dotos_tree.contains(
+            "dotos v0.10.0 (https://github.com/LiGoldragon/dotos.git?rev=80c7b17f7ad3cf547d2624c6a243e5de5f85c9f3#80c7b17f)"
+        ),
+        "Dotos must resolve from the exact current source:\n{dotos_tree}"
+    );
+    assert!(
+        !dotos_tree.contains("?rev=80c7b17f7ad3#"),
+        "Dotos must refuse the short-revision source identity:\n{dotos_tree}"
+    );
 }

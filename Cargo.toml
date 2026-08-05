@@ -1,6 +1,6 @@
 [package]
 name         = "signal-domain"
-version      = "0.2.0"
+version      = "0.3.0"
 edition      = "2024"
 rust-version = "1.89"
 license      = "MIT OR Apache-2.0"
@@ -22,16 +22,16 @@ dotos-text = [
 ]
 
 [dependencies]
-dotos  = { package = "dotos", git = "https://github.com/LiGoldragon/dotos.git", rev = "80c7b17f7ad3", optional = true }
-schema = { git = "https://github.com/LiGoldragon/schema.git", rev = "c966e0ce30bb", optional = true }
-rkyv    = { version = "0.8", default-features = false, features = ["std", "bytecheck", "little_endian", "pointer_width_32", "unaligned"] }
+dotos  = { package = "dotos", git = "https://github.com/LiGoldragon/dotos.git", rev = "80c7b17f7ad3cf547d2624c6a243e5de5f85c9f3", optional = true }
+schema = { git = "https://github.com/LiGoldragon/schema.git", rev = "36a83e8d49989605c1fb9c7be265ddf10a752c31", optional = true }
+rkyv    = { version = "=0.8.17", default-features = false, features = ["std", "bytecheck", "little_endian", "pointer_width_32", "unaligned"] }
 
 [build-dependencies]
-schema-rust = { package = "schema-rust", git = "https://github.com/LiGoldragon/schema-rust.git", rev = "6179a7cf1394083244dd3f3e1d2709f9ec08f7db", default-features = false }
+schema-rust = { package = "schema-rust", git = "https://github.com/LiGoldragon/schema-rust.git", rev = "f0ce3aaddddb9fb9b8d2bcc8548a22efe7578cc0", default-features = false }
 
 [dev-dependencies]
-dotos  = { package = "dotos", git = "https://github.com/LiGoldragon/dotos.git", rev = "80c7b17f7ad3" }
-schema = { git = "https://github.com/LiGoldragon/schema.git", rev = "c966e0ce30bb" }
+dotos  = { package = "dotos", git = "https://github.com/LiGoldragon/dotos.git", rev = "80c7b17f7ad3cf547d2624c6a243e5de5f85c9f3" }
+schema = { git = "https://github.com/LiGoldragon/schema.git", rev = "36a83e8d49989605c1fb9c7be265ddf10a752c31" }
 
 [lints.rust]
 unsafe_code = "forbid"
