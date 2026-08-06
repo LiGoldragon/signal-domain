@@ -236,6 +236,12 @@ fn approved_metadata(
 
 pub struct DomainRustTypePaths(BTreeMap<VocabularyEncodedId, RustTypePath>);
 
+impl DomainRustTypePaths {
+    pub fn new() -> Self {
+        Self::default()
+    }
+}
+
 impl Default for DomainRustTypePaths {
     fn default() -> Self {
         Self(BTreeMap::from([
