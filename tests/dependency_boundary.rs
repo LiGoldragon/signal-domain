@@ -33,6 +33,7 @@ fn runtime_tree_contains_only_the_domain_crate() {
 fn build_tree_is_exact_and_single_world() {
     let manifest = include_str!("../Cargo.toml");
     let lockfile = include_str!("../Cargo.lock");
+    let build_script = include_str!("../build.rs");
     for floating in ["branch =", "branch=", "path+"] {
         assert!(!manifest.contains(floating) && !lockfile.contains(floating));
     }
@@ -46,6 +47,9 @@ fn build_tree_is_exact_and_single_world() {
         1,
         "one bootstrap Rust projection package must serve the strict build"
     );
+    assert!(manifest.contains("9e36587c85bd69357e9042729ba2df0052799756"));
+    assert!(build_script.contains("CargoEthosSourceMetadata"));
+    assert!(build_script.contains("publish_owned_source_directory"));
     assert!(
         !lockfile.contains("name = \"schema-language\""),
         "the deleted pre-bootstrap schema world must not enter the build graph"

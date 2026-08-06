@@ -10,7 +10,7 @@ use name_table::{LocalEncodedId, Name};
 use rust_logos::{
     FixtureRustVocabulary, FixtureRustVocabularyIds, RustLogos, RustTypePath, RustTypePathResolver,
 };
-use schema_rust::{bootstrap::BootstrapInterfaceGeneration, build::CargoSchemaMetadata};
+use schema_rust::{bootstrap::BootstrapInterfaceGeneration, build::CargoEthosSourceMetadata};
 use sema_translator::bootstrap::{
     AuthorizedBootstrapTransition, BootstrapAuthorityIdentity, BootstrapAuthorityRevision,
     BootstrapTransactionAssembler,
@@ -68,7 +68,8 @@ impl SchemaBuild {
             .expect("project domain Interface from the verified transaction")
             .write_or_check("SIGNAL_DOMAIN_UPDATE_INTERFACE_ARTIFACTS")
             .expect("checked-in domain Interface source and Rust projection are fresh");
-        CargoSchemaMetadata::new("signal-domain").emit_schema_directory(&self.crate_root);
+        CargoEthosSourceMetadata::new("signal-domain")
+            .publish_owned_source_directory(self.crate_root.join("schema"));
     }
 }
 
