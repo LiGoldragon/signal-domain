@@ -41,6 +41,15 @@ fn build_tree_is_exact_and_single_world() {
         1,
         "one Sema authority package must serve the strict build"
     );
+    assert_eq!(
+        lockfile.matches("name = \"schema-rust\"").count(),
+        1,
+        "one bootstrap Rust projection package must serve the strict build"
+    );
+    assert!(
+        !lockfile.contains("name = \"schema-language\""),
+        "the deleted pre-bootstrap schema world must not enter the build graph"
+    );
     assert!(
         !lockfile.contains("name = \"sema-engine\""),
         "bootstrap generation must not lock the runtime Sema engine"
