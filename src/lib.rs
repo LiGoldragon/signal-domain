@@ -4,6 +4,8 @@
 //! Rust representation is a strict projection of the same verified bootstrap
 //! transaction; handwritten Rust owns only behavior outside that Interface.
 
+#[cfg(feature = "authority-path")]
+pub mod bootstrap_authority;
 pub mod bootstrap_manifest;
 mod scope;
 
