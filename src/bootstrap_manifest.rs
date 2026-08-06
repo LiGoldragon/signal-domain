@@ -72,10 +72,6 @@ pub const STREAMIDENTITY_SEAT: AuthoritySeat =
     AuthoritySeat::new("StreamIdentity", 60788, 0x92c3708e7af4bae4);
 pub const SCOPEOF_SEAT: AuthoritySeat = AuthoritySeat::new("ScopeOf", 13068, 0x22ca27a4fae8d6fb);
 
-pub const RUST_VOCABULARY_LOCALS: [u16; 10] = [
-    37769, 61673, 64176, 16719, 16803, 52139, 13965, 64644, 44793, 4179,
-];
-
 pub const DECLARATION_SEATS: &[DeclarationSeat] = &[
     DeclarationSeat::new(None, "Domain", 63587, 0x00154f14a5271262),
     DeclarationSeat::new(Some(63587), "All", 26412, 0x009b3851c43a35b8),

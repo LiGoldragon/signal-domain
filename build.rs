@@ -6,17 +6,13 @@ use core_ethos::bootstrap::{
     EthosVersion, IdentitySchema, IdentitySchemaCatalog, InterfaceRole, NomosSchema, SchemaRole,
     TextualMetadataRecord, TextualMetadataSnapshot, TextualProjectionAddress,
 };
-use name_table::{LocalEncodedId, Name};
-use rust_logos::{
-    FixtureRustVocabulary, FixtureRustVocabularyIds, RustLogos, RustTypePath, RustTypePathResolver,
-};
+use name_table::LocalEncodedId;
+use rust_logos::{RustLogos, RustTypePath, RustTypePathResolver};
 use schema_rust::{bootstrap::BootstrapInterfaceGeneration, build::CargoEthosSourceMetadata};
 use sema_translator::bootstrap::{
-    AuthorizedBootstrapTransition, BootstrapAuthorityIdentity, BootstrapAuthorityRevision,
-    BootstrapTransactionAssembler,
+    BootstrapAuthorityContract, SealedRustVocabulary, authorize_bootstrap,
 };
 use signal_sema_translator::{VocabularyEncodedId, VocabularyRoot};
-use structural_codec::EncodedNameResolver;
 
 #[path = "src/bootstrap_manifest.rs"]
 mod bootstrap_manifest;
@@ -49,16 +45,22 @@ impl SchemaBuild {
         let rust_path = self.crate_root.join("src/schema/domain/generated.rs");
         let source = fs::read_to_string(&source_path).expect("read domain Interface source");
         let catalog = bootstrap_catalog();
-        let assembly = BootstrapTransactionAssembler::new(
-            BootstrapAuthorityIdentity::new(bootstrap_manifest::AUTHORITY_IDENTITY),
-            BootstrapAuthorityRevision::new(bootstrap_manifest::AUTHORITY_REVISION),
-            BootstrapGrammarIdentities {
-                document: universal(bootstrap_manifest::GRAMMAR_DOCUMENT_LOCAL),
-                syntax: universal(bootstrap_manifest::GRAMMAR_SYNTAX_LOCAL),
-            },
-            catalog.clone(),
+        let (approved_metadata, canonical_identities) = approved_metadata(&catalog);
+        let assembly = authorize_bootstrap(
+            &source,
+            BootstrapAuthorityContract::new(
+                bootstrap_manifest::AUTHORITY_IDENTITY,
+                bootstrap_manifest::AUTHORITY_REVISION,
+                BootstrapGrammarIdentities {
+                    document: universal(bootstrap_manifest::GRAMMAR_DOCUMENT_LOCAL),
+                    syntax: universal(bootstrap_manifest::GRAMMAR_SYNTAX_LOCAL),
+                },
+                catalog,
+                approved_metadata,
+                canonical_identities,
+                BTreeMap::new(),
+            ),
         )
-        .assemble(&source, authorized_transition(&catalog))
         .expect("assemble authority-approved domain Interface transaction");
         let rust = rust_logos();
         let type_paths = DomainRustTypePaths::new();
@@ -76,11 +78,6 @@ impl SchemaBuild {
 fn universal(local: u16) -> VocabularyEncodedId {
     VocabularyEncodedId::new(VocabularyRoot::Universal, vec![LocalEncodedId::new(local)])
         .expect("manifest seats are nonempty Universal identities")
-}
-
-fn rust_identity(local: u16) -> VocabularyEncodedId {
-    VocabularyEncodedId::new(VocabularyRoot::Rust, vec![LocalEncodedId::new(local)])
-        .expect("manifest Rust vocabulary seats are nonempty")
 }
 
 fn metadata_record(
@@ -232,65 +229,31 @@ fn declaration_record(seat: &DeclarationSeat) -> TextualMetadataRecord {
     )
 }
 
-fn authorized_transition(catalog: &BootstrapCatalog) -> AuthorizedBootstrapTransition {
+fn approved_metadata(
+    catalog: &BootstrapCatalog,
+) -> (
+    TextualMetadataSnapshot,
+    BTreeMap<VocabularyEncodedId, Vec<u8>>,
+) {
     let mut after = catalog.metadata().records().to_vec();
     after.extend(
         bootstrap_manifest::DECLARATION_SEATS
             .iter()
             .map(declaration_record),
     );
-    AuthorizedBootstrapTransition::new(
+    (
         TextualMetadataSnapshot::new(after)
             .expect("manifest declaration projection addresses are exact"),
         bootstrap_manifest::DECLARATION_SEATS
             .iter()
             .map(|seat| (universal(seat.local), seat.canonical.to_be_bytes().to_vec()))
             .collect(),
-        BTreeMap::new(),
     )
-}
-
-#[derive(Default)]
-struct RustNames(BTreeMap<VocabularyEncodedId, Name>);
-
-impl EncodedNameResolver<VocabularyRoot> for RustNames {
-    fn resolve(&self, encoded_id: &VocabularyEncodedId) -> Option<&Name> {
-        self.0.get(encoded_id)
-    }
 }
 
 fn rust_logos() -> RustLogos {
-    let locals = bootstrap_manifest::RUST_VOCABULARY_LOCALS;
-    let ids = FixtureRustVocabularyIds::new(
-        rust_identity(locals[0]),
-        rust_identity(locals[1]),
-        rust_identity(locals[2]),
-        rust_identity(locals[3]),
-        rust_identity(locals[4]),
-        rust_identity(locals[5]),
-        rust_identity(locals[6]),
-        rust_identity(locals[7]),
-        rust_identity(locals[8]),
-        rust_identity(locals[9]),
-    );
-    let mut names = RustNames::default();
-    for (local, spelling) in locals.into_iter().zip([
-        "NewtypeItemRecord",
-        "EnumerationItemRecord",
-        "VariantRecord",
-        "TupleFieldRecord",
-        "TypeReferenceRecord",
-        "struct",
-        "enum",
-        "pub",
-        ",",
-        ";",
-    ]) {
-        names.0.insert(rust_identity(local), Name::new(spelling));
-    }
-    RustLogos::new(
-        FixtureRustVocabulary::seal(ids, &names).expect("manifest Rust vocabulary is sealed"),
-    )
+    RustLogos::from_authority(&SealedRustVocabulary::bootstrap())
+        .expect("authority releases the bootstrap Rust vocabulary")
 }
 
 struct DomainRustTypePaths(BTreeMap<VocabularyEncodedId, RustTypePath>);

@@ -47,7 +47,7 @@ fn build_tree_is_exact_and_single_world() {
         1,
         "one bootstrap Rust projection package must serve the strict build"
     );
-    assert!(manifest.contains("9e36587c85bd69357e9042729ba2df0052799756"));
+    assert!(manifest.contains("ce5fd51ab7a50aeb02a8c308f246d54b5db2dc22"));
     assert!(build_script.contains("CargoEthosSourceMetadata"));
     assert!(build_script.contains("publish_owned_source_directory"));
     assert!(
