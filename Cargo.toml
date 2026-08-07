@@ -7,10 +7,18 @@ license      = "MIT OR Apache-2.0"
 repository   = "https://github.com/LiGoldragon/signal-domain"
 description  = "Shared Signal domain taxonomy contract."
 publish      = false
+links        = "signal-domain"
+build        = "build.rs"
 
 [lib]
 name = "signal_domain"
 path = "src/lib.rs"
+
+[build-dependencies]
+name-table = { git = "https://github.com/LiGoldragon/name-table.git", rev = "7dd5db15c16b4246c83d049c759415d3252a7d43" }
+rust-logos = { git = "https://github.com/LiGoldragon/rust-logos.git", rev = "728647e" }
+schema-rust = { git = "https://github.com/LiGoldragon/schema-rust.git", rev = "778e32a" }
+sema-translator = { git = "https://github.com/LiGoldragon/sema-translator.git", rev = "2030385", default-features = false, features = ["bootstrap"] }
 
 [lints.rust]
 unsafe_code = "forbid"
