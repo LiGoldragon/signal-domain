@@ -143,7 +143,7 @@ dependencies = [
 [[package]]
 name = "core-nomos"
 version = "0.41.1"
-source = "git+https://github.com/LiGoldragon/core-nomos.git?rev=419dcba#419dcba898efc60ad455c80f62cb6f31004f54df"
+source = "git+https://github.com/LiGoldragon/core-nomos.git?rev=e57728e#e57728e8fff0ee52bbf3d678b57a23cfafe62cfb"
 dependencies = [
  "content-identity 0.5.0",
  "core-ethos",
@@ -415,7 +415,7 @@ dependencies = [
 [[package]]
 name = "rust-logos"
 version = "0.32.0"
-source = "git+https://github.com/LiGoldragon/rust-logos.git?rev=728647e#728647e3c45ebafd0822298f1e2450006a61e98f"
+source = "git+https://github.com/LiGoldragon/rust-logos.git?rev=47e3d1b#47e3d1bb84d6e851b5d252b1e05d9c4a5efe2bb9"
 dependencies = [
  "core-logos",
  "name-table",
@@ -432,7 +432,7 @@ checksum = "cf54715a573b99ac80df0bc206da022bcd442c974952c7b9720069370852e21f"
 [[package]]
 name = "schema-rust"
 version = "0.17.0"
-source = "git+https://github.com/LiGoldragon/schema-rust.git?rev=6022ca3#6022ca39e89b16a28f2c53e32036ec0c360c87d0"
+source = "git+https://github.com/LiGoldragon/schema-rust.git?rev=b5e25aa#b5e25aa34c90414884157e9867ad498e9a240dad"
 dependencies = [
  "blake3",
  "core-ethos",
@@ -445,7 +445,7 @@ dependencies = [
 [[package]]
 name = "sema-translator"
 version = "0.11.0"
-source = "git+https://github.com/LiGoldragon/sema-translator.git?rev=25fd070#25fd070f61531e102b5b066f05a9596e3e643a94"
+source = "git+https://github.com/LiGoldragon/sema-translator.git?rev=118d7a3#118d7a35198c6a44d007964ace4629e2b589a3a8"
 dependencies = [
  "content-identity 0.6.0 (git+https://github.com/LiGoldragon/content-identity.git?rev=df1d25c7cd9e822ae03255e04ede59a00b78480b)",
  "core-ethos",
@@ -466,6 +466,7 @@ name = "signal-domain"
 version = "0.9.0"
 dependencies = [
  "name-table",
+ "rkyv",
  "rust-logos",
  "schema-rust",
  "sema-translator",

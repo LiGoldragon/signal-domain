@@ -14,11 +14,14 @@ build        = "build.rs"
 name = "signal_domain"
 path = "src/lib.rs"
 
+[dependencies]
+rkyv = { version = "0.8", default-features = false, features = ["std", "bytecheck", "little_endian", "pointer_width_32", "unaligned"] }
+
 [build-dependencies]
 name-table = { git = "https://github.com/LiGoldragon/name-table.git", rev = "7dd5db15c16b4246c83d049c759415d3252a7d43" }
-rust-logos = { git = "https://github.com/LiGoldragon/rust-logos.git", rev = "728647e" }
-schema-rust = { git = "https://github.com/LiGoldragon/schema-rust.git", rev = "6022ca3" }
-sema-translator = { git = "https://github.com/LiGoldragon/sema-translator.git", rev = "25fd070", default-features = false, features = ["bootstrap"] }
+rust-logos = { git = "https://github.com/LiGoldragon/rust-logos.git", rev = "47e3d1b" }
+schema-rust = { git = "https://github.com/LiGoldragon/schema-rust.git", rev = "b5e25aa" }
+sema-translator = { git = "https://github.com/LiGoldragon/sema-translator.git", rev = "118d7a3", default-features = false, features = ["bootstrap"] }
 
 [lints.rust]
 unsafe_code = "forbid"

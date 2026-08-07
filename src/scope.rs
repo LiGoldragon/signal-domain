@@ -18,6 +18,7 @@ pub trait ScopeValue {
 ///
 /// The wrapper is Rust behavior/representation chosen for the explicit
 /// `ScopeOf` shape seat; it is not a second declaration of any Interface type.
+#[derive(Clone, Debug, PartialEq, Eq, rkyv::Archive, rkyv::Serialize, rkyv::Deserialize)]
 pub struct Scope<T>(T);
 
 impl<T> Scope<T> {
