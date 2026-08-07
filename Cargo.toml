@@ -7,37 +7,10 @@ license      = "MIT OR Apache-2.0"
 repository   = "https://github.com/LiGoldragon/signal-domain"
 description  = "Shared Signal domain taxonomy contract."
 publish      = false
-links        = "signal-domain"
-build        = "build.rs"
 
 [lib]
 name = "signal_domain"
 path = "src/lib.rs"
-
-[features]
-authority-path = [
-  "dep:core-ethos",
-  "dep:name-table",
-  "dep:rust-logos",
-  "dep:sema-translator",
-  "dep:signal-sema-translator",
-]
-
-[dependencies]
-core-ethos = { git = "https://github.com/LiGoldragon/core-ethos.git", rev = "43b48c779c54ee9f05cbcc111d5d88074b162461", optional = true }
-name-table = { git = "https://github.com/LiGoldragon/name-table.git", rev = "a22f48d8040ab9235f3552ad8654ff8e27b8157d", optional = true }
-rust-logos = { git = "https://github.com/LiGoldragon/rust-logos.git", rev = "65d5534c28213cd7022d4e6ed1c7a977a51d77fc", optional = true }
-sema-translator = { git = "https://github.com/LiGoldragon/sema-translator.git", rev = "deb9f04475268d5ec29bb7010f953cafdc0ef398", default-features = false, features = ["bootstrap"], optional = true }
-signal-sema-translator = { git = "https://github.com/LiGoldragon/signal-sema-translator.git", rev = "3f41813dd63904c7e2b3da4382eff64ed1bf12fe", optional = true }
-
-[build-dependencies]
-core-ethos = { git = "https://github.com/LiGoldragon/core-ethos.git", rev = "43b48c779c54ee9f05cbcc111d5d88074b162461" }
-name-table = { git = "https://github.com/LiGoldragon/name-table.git", rev = "a22f48d8040ab9235f3552ad8654ff8e27b8157d" }
-rust-logos = { git = "https://github.com/LiGoldragon/rust-logos.git", rev = "65d5534c28213cd7022d4e6ed1c7a977a51d77fc" }
-schema-rust = { package = "schema-rust", git = "https://github.com/LiGoldragon/schema-rust.git", rev = "ce5fd51ab7a50aeb02a8c308f246d54b5db2dc22", default-features = false }
-sema-translator = { git = "https://github.com/LiGoldragon/sema-translator.git", rev = "deb9f04475268d5ec29bb7010f953cafdc0ef398", default-features = false, features = ["bootstrap"] }
-signal-sema-translator = { git = "https://github.com/LiGoldragon/signal-sema-translator.git", rev = "3f41813dd63904c7e2b3da4382eff64ed1bf12fe" }
-structural-codec = { git = "https://github.com/LiGoldragon/structural-codec.git", rev = "879d76f91facedd6d5cbca79e282260e1beb9478" }
 
 [lints.rust]
 unsafe_code = "forbid"

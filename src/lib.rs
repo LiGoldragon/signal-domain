@@ -1,12 +1,9 @@
-//! Signal's domain Interface, represented by its authority-seated encoded names.
+//! Signal's authored domain Interface source.
 //!
-//! `schema/domain.schema` is the canonical textual projection. The compiled
-//! Rust representation is a strict projection of the same verified bootstrap
-//! transaction; handwritten Rust owns only behavior outside that Interface.
+//! `schema/domain.schema` is retained as the future durable-authority input.
+//! Its Rust projection is intentionally absent until hqu.30 can commit
+//! authority state and install one durable projection atomically.
 
-#[cfg(feature = "authority-path")]
-pub mod bootstrap_authority;
-pub mod bootstrap_manifest;
 mod scope;
 
 pub mod schema;
@@ -19,6 +16,3 @@ pub use crate::scope::{
 
 /// Canonical textual projection of the domain Interface.
 pub const DOMAIN_INTERFACE_SOURCE: &str = include_str!("../schema/domain.schema");
-
-/// Checked-in strict Rust projection of the authority-verified Interface.
-pub const DOMAIN_INTERFACE_RUST: &str = include_str!("schema/domain/generated.rs");
