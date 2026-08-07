@@ -17,8 +17,8 @@ path = "src/lib.rs"
 [build-dependencies]
 name-table = { git = "https://github.com/LiGoldragon/name-table.git", rev = "7dd5db15c16b4246c83d049c759415d3252a7d43" }
 rust-logos = { git = "https://github.com/LiGoldragon/rust-logos.git", rev = "728647e" }
-schema-rust = { git = "https://github.com/LiGoldragon/schema-rust.git", rev = "d169a5d" }
-sema-translator = { git = "https://github.com/LiGoldragon/sema-translator.git", rev = "23d4762", default-features = false, features = ["bootstrap"] }
+schema-rust = { git = "https://github.com/LiGoldragon/schema-rust.git", rev = "6022ca3" }
+sema-translator = { git = "https://github.com/LiGoldragon/sema-translator.git", rev = "25fd070", default-features = false, features = ["bootstrap"] }
 
 [lints.rust]
 unsafe_code = "forbid"
