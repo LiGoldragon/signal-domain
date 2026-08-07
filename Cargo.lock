@@ -432,8 +432,9 @@ checksum = "cf54715a573b99ac80df0bc206da022bcd442c974952c7b9720069370852e21f"
 [[package]]
 name = "schema-rust"
 version = "0.17.0"
-source = "git+https://github.com/LiGoldragon/schema-rust.git?rev=778e32a#778e32a1a936b83c2acb8a3917e0d3e95cebbade"
+source = "git+https://github.com/LiGoldragon/schema-rust.git?rev=6807ce4#6807ce4e8308cc82ed1dcca99bce25d1d04a9542"
 dependencies = [
+ "blake3",
  "core-ethos",
  "core-nomos",
  "rust-logos",
