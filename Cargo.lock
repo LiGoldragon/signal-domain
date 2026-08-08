@@ -415,7 +415,7 @@ dependencies = [
 [[package]]
 name = "rust-logos"
 version = "0.32.0"
-source = "git+https://github.com/LiGoldragon/rust-logos.git?rev=47e3d1b#47e3d1bb84d6e851b5d252b1e05d9c4a5efe2bb9"
+source = "git+https://github.com/LiGoldragon/rust-logos.git?rev=0687449#06874499afa447ca9106df7a122fcfc21563756f"
 dependencies = [
  "core-logos",
  "name-table",
@@ -432,7 +432,7 @@ checksum = "cf54715a573b99ac80df0bc206da022bcd442c974952c7b9720069370852e21f"
 [[package]]
 name = "schema-rust"
 version = "0.17.0"
-source = "git+https://github.com/LiGoldragon/schema-rust.git?rev=b5e25aa#b5e25aa34c90414884157e9867ad498e9a240dad"
+source = "git+https://github.com/LiGoldragon/schema-rust.git?rev=37b7d10#37b7d1035a472a15081f3e2e8a93b95bf733c3ee"
 dependencies = [
  "blake3",
  "core-ethos",

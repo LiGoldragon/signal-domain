@@ -19,8 +19,8 @@ rkyv = { version = "0.8", default-features = false, features = ["std", "bytechec
 
 [build-dependencies]
 name-table = { git = "https://github.com/LiGoldragon/name-table.git", rev = "7dd5db15c16b4246c83d049c759415d3252a7d43" }
-rust-logos = { git = "https://github.com/LiGoldragon/rust-logos.git", rev = "47e3d1b" }
-schema-rust = { git = "https://github.com/LiGoldragon/schema-rust.git", rev = "b5e25aa" }
+rust-logos = { git = "https://github.com/LiGoldragon/rust-logos.git", rev = "0687449" }
+schema-rust = { git = "https://github.com/LiGoldragon/schema-rust.git", rev = "37b7d10" }
 sema-translator = { git = "https://github.com/LiGoldragon/sema-translator.git", rev = "118d7a3", default-features = false, features = ["bootstrap"] }
 
 [lints.rust]
