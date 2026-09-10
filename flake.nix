@@ -16,12 +16,11 @@
         pkgs = import nixpkgs { inherit system; };
         rust = rust-build.lib.${system}.fromPkgs pkgs;
         inherit (rust) craneLib toolchain;
-        schemaFilter = path: type:
-          type == "regular" &&
-          (pkgs.lib.hasSuffix ".dotos" path || pkgs.lib.hasSuffix ".schema" path);
+        ethosFilter = path: type:
+          type == "regular" && pkgs.lib.hasSuffix ".ethos" path;
         src = rust.cleanSource {
           root = ./.;
-          extraFilters = [ schemaFilter ];
+          extraFilters = [ ethosFilter ];
         };
         cargoVendorDirectory = craneLib.vendorCargoDeps { inherit src; };
         commonArguments = {
@@ -34,7 +33,14 @@
         packages.default = craneLib.buildPackage (commonArguments // { inherit cargoArtifacts; });
         checks = {
           build = craneLib.cargoBuild (commonArguments // { inherit cargoArtifacts; });
-          test = craneLib.cargoTest (commonArguments // { inherit cargoArtifacts; });
+          test-default = craneLib.cargoTest (commonArguments // {
+            inherit cargoArtifacts;
+            cargoTestExtraArgs = "--no-default-features";
+          });
+          test-datom = craneLib.cargoTest (commonArguments // {
+            inherit cargoArtifacts;
+            cargoTestExtraArgs = "--features datom";
+          });
           doc = craneLib.cargoDoc (commonArguments // {
             inherit cargoArtifacts;
             RUSTDOCFLAGS = "-D warnings";

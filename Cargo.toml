@@ -1,29 +1,16 @@
 [package]
-name         = "signal-domain"
-version      = "0.9.0"
-edition      = "2024"
+name = "signal-domain"
+version = "1.0.0"
+edition = "2024"
 rust-version = "1.89"
-license      = "MIT OR Apache-2.0"
-repository   = "https://github.com/LiGoldragon/signal-domain"
-description  = "Shared Signal domain taxonomy contract."
-publish      = false
-links        = "signal-domain"
-build        = "build.rs"
-
-[lib]
-name = "signal_domain"
-path = "src/lib.rs"
-
+publish = false
+build = "build.rs"
+[features]
+default = []
+datom = ["dep:datom-codec", "dep:protos"]
 [dependencies]
+datom-codec = { git = "https://github.com/LiGoldragon/datom-codec", rev = "2dad91afce6237d772767bd4ab19f31276e6999e", optional = true }
+protos = { git = "https://github.com/LiGoldragon/protos", rev = "aac95b0d08a4c7eb7f73c8ea18309f9e2e89315f", optional = true }
 rkyv = { version = "0.8", default-features = false, features = ["std", "bytecheck", "little_endian", "pointer_width_32", "unaligned"] }
-
 [build-dependencies]
-name-table = { git = "https://github.com/LiGoldragon/name-table.git", rev = "7dd5db15c16b4246c83d049c759415d3252a7d43" }
-rust-logos = { git = "https://github.com/LiGoldragon/rust-logos.git", rev = "0687449" }
-schema-rust = { git = "https://github.com/LiGoldragon/schema-rust.git", rev = "37b7d10" }
-sema-translator = { git = "https://github.com/LiGoldragon/sema-translator.git", rev = "118d7a3", default-features = false, features = ["bootstrap"] }
-
-[lints.rust]
-unsafe_code = "forbid"
-unused      = { level = "warn", priority = -1 }
-dead_code   = "warn"
+ethos-zero = { git = "https://github.com/LiGoldragon/ethos-zero", rev = "9e2e327a6c8e2e0e7221881dda86a2971e10c675" }
