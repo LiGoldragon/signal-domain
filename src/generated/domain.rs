@@ -644,5 +644,3 @@ pub enum CommerceDomain {
     Pricing,
     Support,
 }
-pub enum Query {}
-pub enum Response {}

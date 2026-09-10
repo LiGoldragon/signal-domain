@@ -89,8 +89,8 @@ checksum = "877a4ace8713b0bcf2a4e7eec82529c029f1d0619886d18145fea96c3ffe5c0f"
 
 [[package]]
 name = "ethos-zero"
-version = "6.1.1"
-source = "git+https://github.com/LiGoldragon/ethos-zero?rev=9e2e327a6c8e2e0e7221881dda86a2971e10c675#9e2e327a6c8e2e0e7221881dda86a2971e10c675"
+version = "6.1.2"
+source = "git+https://github.com/LiGoldragon/ethos-zero?rev=daf007296a19ad2f9c8a1e67e102b2e3f09db327#daf007296a19ad2f9c8a1e67e102b2e3f09db327"
 dependencies = [
  "datom-codec 0.25.4 (git+https://github.com/LiGoldragon/datom-codec?rev=35d26d822870356af9b04cacfec40d85600b541d)",
  "prettyplease",
