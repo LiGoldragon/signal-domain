@@ -1,4 +1,5 @@
 #![allow(dead_code, non_camel_case_types, non_snake_case)]
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -19,6 +20,7 @@ pub enum ArtDomain {
     Painting,
     Sculpture,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -36,6 +38,7 @@ pub enum CraftDomain {
     Electronics,
     Repair,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -52,6 +55,7 @@ pub enum CommunityDomain {
     Institutions,
     Gatherings,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -61,6 +65,7 @@ pub enum TechnologyDomain {
     Software(SoftwareDomain),
     Hardware(HardwareLeaf),
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -77,6 +82,7 @@ pub enum EngineeringLeaf {
     ApplicationProgrammingInterfaces,
     Modularity,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -104,6 +110,7 @@ pub enum HealthDomain {
     Disease,
     Rehabilitation,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -122,6 +129,7 @@ pub enum LeisureDomain {
     Entertainment,
     Play,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -146,7 +154,9 @@ pub enum KnowledgeDomain {
     Chemistry,
     Biology,
 }
+#[rustfmt::skip]
 pub type DomainScopes = std::vec::Vec<DomainScope>;
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -165,6 +175,7 @@ pub enum LanguageDomain {
     Rhetoric,
     Writing,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -174,6 +185,7 @@ pub enum HardwareLeaf {
     All,
     Networking,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -194,6 +206,7 @@ pub enum SelfhoodDomain {
     Motivation,
     Identity,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -211,6 +224,7 @@ pub enum EducationDomain {
     Teaching,
     Skill,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -231,6 +245,7 @@ pub enum KinshipDomain {
     Belonging,
     Reconciliation,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -252,6 +267,7 @@ pub enum NatureDomain {
     Sustainability,
     Wilderness,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -265,6 +281,7 @@ pub enum AppearanceDomain {
     Cosmetics,
     Etiquette,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -284,6 +301,7 @@ pub enum HomeDomain {
     Property,
     Relocation,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -299,6 +317,7 @@ pub enum SafetyDomain {
     Preparedness,
     Privacy,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -320,6 +339,7 @@ pub enum WorkDomain {
     Project,
     Entrepreneurship,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -339,6 +359,7 @@ pub enum SoftwareDomain {
     Theory,
     Data(DataLeaf),
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -371,6 +392,7 @@ pub enum Domain {
     Food(FoodDomain),
     Community(CommunityDomain),
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -380,6 +402,7 @@ pub enum QualityLeaf {
     Testing,
     All,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -394,7 +417,9 @@ pub enum DataLeaf {
     Modeling,
     Migration,
 }
+#[rustfmt::skip]
 pub type ScopeSet = std::vec::Vec<DomainScope>;
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -405,6 +430,7 @@ pub enum SurfacesLeaf {
     CommandLineInterfaces,
     Visualization,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -421,6 +447,7 @@ pub enum ProgrammingLeaf {
     Macros,
     Metaprogramming,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -439,6 +466,7 @@ pub enum TravelDomain {
     Tourism,
     Transportation,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -455,6 +483,7 @@ pub enum InformationDomain {
     Archives,
     Documentation,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -464,6 +493,7 @@ pub enum IntelligenceLeaf {
     All,
     AgentSystems,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -474,6 +504,7 @@ pub enum SystemsLeaf {
     Concurrency,
     All,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -492,6 +523,7 @@ pub enum FoodDomain {
     Cooking,
     Recipe,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -513,6 +545,7 @@ pub enum FinanceDomain {
     Income,
     Retirement,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -521,6 +554,7 @@ pub enum FinanceDomain {
 pub struct DomainScope {
     pub domain: Domain,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -530,6 +564,7 @@ pub enum ObservabilityLeaf {
     Tracing,
     All,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -543,6 +578,7 @@ pub enum OperationsLeaf {
     All,
     ConfigurationManagement,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -553,6 +589,7 @@ pub enum DistributedLeaf {
     All,
     EventDrivenArchitecture,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -574,6 +611,7 @@ pub enum SpiritualityDomain {
     Wisdom,
     Meditation,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -587,6 +625,7 @@ pub enum SecurityLeaf {
     Cryptography,
     Privacy,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -607,6 +646,7 @@ pub enum GovernanceDomain {
     Elections,
     War,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
@@ -626,6 +666,7 @@ pub enum LawDomain {
     Title,
     Policing,
 }
+#[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq)]
 #[cfg_attr(
     feature = "datom",
