@@ -17,7 +17,7 @@ authority-owned transaction + installed Rust projection
 and all 41 taxonomy declarations. The previous component-owned identity seats,
 canonical bytes, and generated Rust came from a condemned caller authority and
 were removed rather than translated into a new compatibility identity scheme.
-Current Sema authority minting is intentionally in-memory only, so this source
+Current Memory authority minting is intentionally in-memory only, so this source
 cannot have a reproducible checked-in Rust projection before hqu.30.
 
 The generated Rust is absent, and the crate consequently does not compile.

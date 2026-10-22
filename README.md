@@ -7,7 +7,7 @@ body positions `{Inputs Outputs Refusals Types}`. The complete taxonomy lives
 in `Types`.
 
 The former caller-owned authority manifest, mint seats, canonical-order bytes,
-and generated Rust projection were removed. A fresh Sema authority intentionally
+and generated Rust projection were removed. A fresh Memory authority intentionally
 mints opaque names in memory; until hqu.30 owns durable `CommitBootstrap`
 installation, it cannot safely reproduce or freshness-check a checked-in Rust
 artifact. The authored Ethos source is retained unchanged as that future input.
