@@ -34,7 +34,7 @@ fn shared_domain_data_round_trips_as_datom_text() {
         pending
             .actualize(&mut Budget {
                 remaining: 1024,
-                reader: ReaderBudget { remaining: 1024 },
+                reader: ReaderBudget::try_from(1024).expect("bounded reader budget"),
                 depth: 0,
                 maximum_depth: 1024,
             })
